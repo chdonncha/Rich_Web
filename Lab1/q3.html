@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<!--
+Created using JS Bin
+http://jsbin.com
+
+Copyright (c) 2016 by chdonncha (http://jsbin.com/bofibas/11/edit)
+
+Released under the MIT license: http://jsbin.mit-license.org
+-->
+<meta name="robots" content="noindex">
+<html>
+
+<head>
+    <meta name="description" content="[Lab1 Q3]">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>JS Bin</title>
+<style id="jsbin-css">
+input[type="text"] {
+    width: 100%;
+}
+.row {
+    display: flex;
+}
+.col {
+    flex: 1;
+    padding: 1em;
+    border-color: grey;
+}
+section {
+    position: absolute;
+    background-color: white;
+    font-family: "Arial", Times, serif;
+}
+.full-width-div {
+    padding-left: 5%;
+    padding-right: 5%;
+}
+input[type="checkbox"] {
+    margin-top: 5%;
+    margin-bottom: 5%;
+}
+input[type="button"] {
+    border: none;
+    color: grey;
+    font-size: 80%;
+    font-weight: bold;
+    background-color: #E8E8EE;
+    width: 25%;
+    height: 35px;
+    margin-left: 20px;
+    margin-right: 20px;
+}
+input[type="security"] {
+    width: 15%;
+    text-align: center;
+}
+#sidebar {
+    width:100%;
+    padding-left: 5%;
+    padding-right: 5%;
+}
+.buttonHolder {
+    text-align: center;
+}
+hr {
+    border: 0;
+    height: 1px;
+    background: lightgrey;
+}
+.indent {
+    padding-left: 5%;
+    padding-right: 5%;
+}
+h3{
+    color:grey;
+}
+</style>
+</head>
+<section>
+    <div class="row">
+        <div class="col">
+            <div class="full-width-div">
+                <h3>Order Contact</h3>
+                <hr><br>
+                <label> First Name:</label>
+                <br>
+                <input placeholder="John" type="text" name="first_name">
+                <br><br>
+                <label>Last Name:</label>
+                <br>
+                <input placeholder="Doe" type="text" name="last_name">
+                <br><br>
+                <label>Address 1:</label>
+                <br>
+                <input placeholder="123 Fakestreet" type="text" name="add1">
+                <br><br>
+                <label>Address 2:</label>
+                <br>
+                <input placeholder="Rathfarnham" type="text" name="add2">
+                <br>
+                <br>
+                <label for="county">County:</label>
+                
+                <select>
+                    <option value="dublin">Dublin</option>
+                    <option value="wicklow">Wicklow</option>
+                    <option value="wexford">Wexford</option>
+                </select>
+            </div>
+        </div>
+        <div class="col">
+            <aside id="sidebar">
+                <h3>Payment Method</h3>
+                <hr><br>
+                <input type="radio" name="cardtype" value="Visa"> Visa
+                <input type="radio" name="cardtype" value="Mastercard"> Mastercard
+                <br>
+                <br>
+                <label>Cardholder Name:</label>
+                <br>
+                <input placeholder="John Doe" name="cardnumber">
+                <br>
+                <br>
+                <label>Card Number:</label>
+                <br>
+                <input placeholder="****-****-****-****" name="cardnumber">
+                <br>
+                <br>
+                <label>Security Code:</label>
+                <input type="security" placeholder="***" type="text" name="security-code">
+                <br>
+                <br>
+                <label>Expires:</label>
+                <select>
+                    <option>01</option>
+                    <option>02</option>
+                    <option>03</option>
+                    <option>04</option>
+                    <option>05</option>
+                    <option>06</option>
+                    <option>07</option>
+                    <option>08</option>
+                    <option>09</option>
+                    <option>10</option>
+                    <option>11</option>
+                    <option>12</option>
+                    <option>13</option>
+                    <option>14</option>
+                    <option>15</option>
+                    <option>16</option>
+                    <option>17</option>
+                    <option>18</option>
+                    <option>19</option>
+                    <option>20</option>
+                    <option>21</option>
+                    <option>22</option>
+                    <option>23</option>
+                    <option>24</option>
+                    <option>25</option>
+                    <option>26</option>
+                    <option>27</option>
+                    <option>28</option>
+                    <option>29</option>
+                    <option>30</option>
+                    <option>31</option>
+                </select>
+                <select>
+                    <option value="dublin">2009</option>
+                    <option value="dublin">2010</option>
+                    <option value="dublin">2011</option>
+                    <option value="dublin">2012</option>
+                    <option value="dublin">2013</option>
+                    <option value="dublin">2014</option>
+                    <option value="dublin">2015</option>
+                    <option value="dublin">2016</option>
+                    <option value="dublin">2017</option>
+                    <option value="dublin">2018</option>
+                    <option value="dublin">2019</option>
+                    <option value="dublin">2020</option>
+                </select>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col" style="padding:.1em">
+            <div class="indent">
+                <hr>
+              <input type="checkbox">I agree to the <a href="url">Terms & Conditions</a>
+                <div class="buttonHolder">
+                    <input type="button" value="Submit">
+                    <input type="button" value="Cancel">
+                    <br>
+                    <br>
+                </div>
+            </div>
+         </div>
+</section>
+</html>

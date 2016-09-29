@@ -1,0 +1,100 @@
+<!--
+Created using JS Bin
+http://jsbin.com
+
+Copyright (c) 2016 by chdonncha (http://jsbin.com/xovobug/8/edit)
+
+Released under the MIT license: http://jsbin.mit-license.org
+-->
+<meta name="robots" content="noindex">
+<style id="jsbin-css">
+
+.box
+{
+border-color:black;
+height:300px;
+width:350px;
+border-radius:10px;
+position:relative;
+} 
+
+form
+{
+  margin-top:10px;
+}
+
+div 
+{
+  border: 2px solid;
+  border-radius: 25px;
+}
+
+.shadow 
+{
+  -moz-box-shadow:    3px 3px 5px 6px #ccc;
+  -webkit-box-shadow: 0px 0px 0px 0px #ccc;
+}
+
+div 
+{
+  display: inline-block;
+  text-align: center;
+}
+
+input
+{
+  margin-top:10px
+}
+
+input[type="button"]
+{
+  font-size: 100%;
+  border-radius: 7px;
+  font-weight: bold;
+  background-color:lightgrey;
+  width:75px;
+  height:30px
+}
+
+input[type="textfield"]
+{
+  font-size: 200%;
+  text-align:right;
+  border-radius:5px;
+  margin-bottom:10px;
+  width:310px;
+  Height:50px
+}
+</style>
+<div class="box">
+  <form name="calculator" >
+    <input class= "shadow" type="textfield" 
+           placeholder="0" name="ans" value="">
+    <br>
+    <input class= "shadow"type="button" value="(">
+    <input type="button" value=")">
+    <input type="button" value="±">
+    <input type="button" value="÷">
+    <br>
+    <input type="button" value="7">
+    <input type="button" value="8">
+    <input type="button" value="9">
+    <input type="button" value="x">
+    <br>
+    <input type="button" value="4">
+    <input type="button" value="5">
+    <input type="button" value="6">
+    <input type="button" value="-">
+    <br>
+    <input type="button" value="1">
+    <input type="button" value="2">
+    <input type="button" value="3">
+    <input type="button" value="+">
+    <br>
+    <input type="button" value="0">
+    <input type="button" value=".">
+    <input type="button" value="C">
+    <input type="button" value="=">
+    <br>
+  </form>
+</div>
