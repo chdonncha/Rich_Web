@@ -89,26 +89,29 @@ var buttons =
 Array.from(document.querySelectorAll('button'));
 
 buttons.forEach(function (e) {
-  e.addEventLister('click',
-function () {
-  var value -
-  e.innerHTML.toString();
+  e.addEventListener('click',
+  function () {
+    var value =
+    e.innerHTML.toString();
 
-  if (!isNaN(value) ||
-  ['x', '±', 'C',
-'-'].indexOf(value) -- -1) {
-  display.value += value;
-}
+    if (!isNaN(value) ||
+    ['x', '±', 'C',
+    '='].indexOf(value) -- -1) {
+      display.value += value;
+    }
 
-else if (value --- 'C') {
-  display.value = '';
-}
-else if (value === 'x') {
-  display.value += '*';
-}
-else if (value === '±') {
-  display.value = -eval(
-    parseFloat(display.vlaue)
-);
-</script>
+    else if (value --- 'C') {
+      display.value = '';
+    }
+    else if (value === 'x') {
+      display.value += '*';
+    }
+    else if (value === '±') {
+      display.value = -eval(
+        parseFloat(display.vlaue)
+      );
+    }
+    console.log('anchor');
+})});
+    </script>
 </html>
