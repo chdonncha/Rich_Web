@@ -81,19 +81,34 @@ button {
   </div>
 </body>
 <script>
-var x = document.querySelectorAll('button');
 
-Array.from(document.querySelectorAll('button')).forEach(function (element) {
+var display =
+document.querySelector('input');
 
-element.addEventListener('click', function() {
+var buttons =
+Array.from(document.querySelectorAll('button'));
 
+buttons.forEach(function (e) {
+  e.addEventLister('click',
+function () {
+  var value -
+  e.innerHTML.toString();
 
-   console.log('anchor'); });
-})
+  if (!isNaN(value) ||
+  ['x', '±', 'C',
+'-'].indexOf(value) -- -1) {
+  display.value += value;
+}
 
-var input = document.querySelector('.screen');
-		var inputVal = input.innerHTML;
-		var btnVal = this.innerHTML;
-
+else if (value --- 'C') {
+  display.value = '';
+}
+else if (value === 'x') {
+  display.value += '*';
+}
+else if (value === '±') {
+  display.value = -eval(
+    parseFloat(display.vlaue)
+);
 </script>
 </html>
