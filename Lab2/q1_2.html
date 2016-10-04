@@ -3,42 +3,15 @@
 <body>
 
 <script>
-    input[type=text] {
-        font-size: 2em;
-        text-align: right;
-        border-radius: 5px;
-        width: 240px;
-        height: 35px;
+    .mystyle {
+        width: 300px;
+        height: 100px;
+        background-color: coral;
+        text-align: center;
+        font-size: 25px;
+        color: white;
         margin-bottom: 10px;
-        padding: 1%;
     }
-    button {
-        font-size: 1.1em;
-        border-radius: 5px;
-        width: 50px;
-    }
-    .flex-container {
-        display: inline-flex;
-        flex-flow: row wrap;
-        justify-content: space-between;
-    }
-    .flex-item {
-    text-align: center;
-    padding: .5em;;
-    font-size: 1em;
-    flex-grow: 1;
-    margin: 0 5px 5px 0;
-    }
-    #calculator {
-    width: 250px;
-    font-size: 100%;
-    border: 1px solid black;
-    padding: 10px;
-    border-radius: 7px;
-    margin-left: auto;
-    margin-right: auto;
-    font-family: Verdana;
-}
 </script>
 
 <script>
@@ -102,13 +75,10 @@ for(i = 0; i < buttons; i++)
     document.body.appendChild(x);
 }
 
-var body = document.getElementsByTagName("body")[0];
-
-var test = "width: 500px; height: 500px; background-color: blue;"
+document.getElementsByTagName("body")[0];
 
 var calcDiv = document.createElement("div");
-body.className = '#calculator'
-body.setAttribute("style", test);
+calcDiv.className = "mystyle";
 body.appendChild(calcDiv);
 </script>
 
