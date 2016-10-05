@@ -16,6 +16,11 @@
 
 <script>
 
+var head = document.getElementsByTagName("head")[0];
+
+style = document.createElement("style");
+style.type = "text/css";
+
 var css = "input[type=text] { \
         font-size: 2em; \
         text-align: right; \
@@ -55,7 +60,14 @@ var css = "input[type=text] { \
         font-family: Verdana; \
     }";
 
+if(style.styleSheet) {
+   style.styleSheet.cssText = css;
+}
+else {
+   style.appendChild(document.createTextNode(css));
+}
 
+head.appendChild(style);
 
 var symbols = [
     '(',')','±','÷','7','8','9',
@@ -65,15 +77,16 @@ var symbols = [
 
 buttons = symbols.length;
 
-var y = document.createElement("INPUT");
-y.setAttribute("type", "textfield");
+var y = document.createElement("input");
+y.setAttribute("type", "text");
 y.setAttribute("value", "");
 document.body.appendChild(y);
 
 for(i = 0; i < buttons; i++)
 {
-    var x = document.createElement("INPUT");
+    var x = document.createElement("input");
     x.setAttribute("type", "button");
+    x.setAttribute("class", "flex-item");
     x.setAttribute("value", symbols[i]);
     document.body.appendChild(x);
 }
@@ -89,7 +102,7 @@ var body = document.getElementsByTagName("body")[0];
 
 var calcDiv = document.createElement("div");
 
-calcDiv.setAttribute("style", "width: 500px; height: 500px; background-color: blue;");
+//calcDiv.setAttribute("style", "width: 500px; height: 500px; background-color: blue;");
 body.appendChild(calcDiv);
 
 </script>
