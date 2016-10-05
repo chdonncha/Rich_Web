@@ -2,102 +2,91 @@
 <html>
 <body>
 
-<script>
+   <script>
+   var head = document.getElementsByTagName("head")[0];
 
-var head = document.getElementsByTagName("head")[0];
-
-style = document.createElement("style");
-style.type = "text/css";
-
-var css = "input[type=text] { \
-        font-size: 2em; \
-        text-align: right; \
-        border-radius: 5px; \
-        width: 240px; \
-        height: 35px; \
-        margin-bottom: 10px; \
-        padding: 1%; \
-    } \
-    button { \
-        font-size: 1.1em; \
-        border-radius: 5px; \
-        width: 50px; \
-    } \
-    .flex-container { \
-        display: inline-flex; \
-        flex-flow: row wrap; \
-        justify-content: space-between; \
-        width: 500px; \
-       background-color: lightblue; \
+   style = document.createElement("style");
+   style.type = "text/css";
+   
+   var css = "input[type=text] { \
+      font-size: 2em; \
+      text-align: right; \
+      border-radius: 5px; \
+      width: 240px; \
+      height: 35px; \
+      margin-bottom: 10px; \
+      padding: 1%; \
    } \
-    .flex-item { \
-        text-align: center; \
-        padding: .5em; \
-        font-size: 1em; \
-        flex-grow: 1; \
-        margin: 0 5px 5px 0; \
-    } \
-    #calculator { \
-        width: 250px; \
-        font-size: 100%; \
-        border: 1px solid black; \
-        padding: 10px; \
-        border-radius: 7px; \
-        margin-left: auto; \
-        margin-right: auto; \
-        font-family: Verdana; \
-    }";
+   button { \
+      font-size: 1.1em; \
+      border-radius: 5px; \
+      width: 50px; \
+   } \
+   .flex-container { \
+      display: inline-flex; \
+      flex-flow: row wrap; \
+      justify-content: space-between; \
+      width: 500px; \
+      background-color: lightblue; \
+   } \
+   .flex-item { \
+      text-align: center; \
+      padding: .5em; \
+      font-size: 1em; \
+      flex-grow: 1; \
+      margin: 0 5px 5px 0; \
+   } \
+   #calculator { \
+      width: 250px; \
+      font-size: 100%; \
+      border: 1px solid black; \
+      padding: 10px; \
+      border-radius: 7px; \
+      margin-left: auto; \
+      margin-right: auto; \
+      font-family: Verdana; \
+   }";
 
-if(style.styleSheet) {
-   style.styleSheet.cssText = css;
-}
-else {
-   style.appendChild(document.createTextNode(css));
-}
+   if(style.styleSheet) {
+      style.styleSheet.cssText = css;
+   }
+   else {
+      style.appendChild(document.createTextNode(css));
+   }
 
-head.appendChild(style);
+   head.appendChild(style);
 
-var body = document.getElementsByTagName("body")[0];
+   var body = document.getElementsByTagName("body")[0];
 
-var calcu = document.createElement("div");
-calcu.setAttribute("id", "calculator");
-body.appendChild(calcu);
+   var calcu = document.createElement("div");
+   calcu.setAttribute("id", "calculator");
+   body.appendChild(calcu);
 
-var contain =  document.createElement("div");
-contain.setAttribute("class", "flex-container");
-calcu.appendChild(contain);
+   var contain =  document.createElement("div");
+   contain.setAttribute("class", "flex-container");
+   calcu.appendChild(contain);
 
-var symbols = [
-    '(',')','±','÷','7','8','9',
-    'x','4','5','6','-','1','2',
-    '3','+','0','.','C','='
-];
+   var symbols = [
+      '(',')','±','÷','7','8','9',
+      'x','4','5','6','-','1','2',
+      '3','+','0','.','C','='
+   ];
 
-buttons = symbols.length;
+   buttons = symbols.length;
 
-var y = document.createElement("input");
-y.setAttribute("type", "text");
-y.setAttribute("placeholder", "0");
-calcu.appendChild(y);
+   var y = document.createElement("input");
+   y.setAttribute("type", "text");
+   y.setAttribute("placeholder", "0");
+   calcu.appendChild(y);
 
-for(i = 0; i < buttons; i++)
-{
-    var x = document.createElement("button");
-    x.setAttribute("class", "flex-item");
-    x.innerHTML = symbols[i];
-    calcu.appendChild(x);
-}
-
-
-//var calcDiv = document.createElement("div");
-//var calcDiv = document.createElement("div");
-//calcDiv.className = "mystyle";
-//body.setAttribute("style", "width: 500px; height: 500px; background-color: blue;");
-//body.appendChild(calcDiv);
-
-
-
-</script>
+   for(i = 0; i < buttons; i++)
+   {
+      var x = document.createElement("button");
+      x.setAttribute("class", "flex-item");
+      x.innerHTML = symbols[i];
+      calcu.appendChild(x);
+   }
+   </script>
 
 </body>
 </html>
