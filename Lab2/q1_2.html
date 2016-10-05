@@ -16,8 +16,6 @@
 
 <script>
 
-
-/*
 var css = "input[type=text] { \
         font-size: 2em; \
         text-align: right; \
@@ -56,7 +54,7 @@ var css = "input[type=text] { \
         margin-right: auto; \
         font-family: Verdana; \
     }";
-*/
+
 
 
 var symbols = [
@@ -67,6 +65,11 @@ var symbols = [
 
 buttons = symbols.length;
 
+var y = document.createElement("INPUT");
+y.setAttribute("type", "textfield");
+y.setAttribute("value", "");
+document.body.appendChild(y);
+
 for(i = 0; i < buttons; i++)
 {
     var x = document.createElement("INPUT");
@@ -75,11 +78,20 @@ for(i = 0; i < buttons; i++)
     document.body.appendChild(x);
 }
 
-document.getElementsByTagName("body")[0];
+
+//var calcDiv = document.createElement("div");
+//var calcDiv = document.createElement("div");
+//calcDiv.className = "mystyle";
+//body.setAttribute("style", "width: 500px; height: 500px; background-color: blue;");
+//body.appendChild(calcDiv);
+
+var body = document.getElementsByTagName("body")[0];
 
 var calcDiv = document.createElement("div");
-calcDiv.className = "mystyle";
+
+calcDiv.setAttribute("style", "width: 500px; height: 500px; background-color: blue;");
 body.appendChild(calcDiv);
+
 </script>
 
 </body>
