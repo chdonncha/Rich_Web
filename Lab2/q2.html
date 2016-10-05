@@ -12,7 +12,7 @@
   var css = "button { \
     font-size: 1.1em; \
     border-radius: 5px; \
-    width: 50px; \
+    width: 100px; \
   } \
   .flex-item { \
     text-align: center; \
@@ -20,6 +20,12 @@
     font-size: 1em; \
     flex-grow: 1; \
     margin: 0 5px 5px 0; \
+  } \
+  div { \
+    display: inline-block \
+    width: 80px; \
+    height: 80px; \
+    margin: 1em;
   } ";
 
   if(style.styleSheet) {
@@ -41,11 +47,11 @@
   ran = Math.random() * 20;
 
   //for(i = 0; i < 10; i++)
-  for(i = 0; i < 10; i++)
+  for(i = 0; i < 101; i++)
   {
-    var x = document.createElement("button");
+    var x = document.createElement("div");
     var init;
-    x.setAttribute("class", "flex-item");
+    x.setAttribute("class", "div");
     calcu.appendChild(x);
     var ran = Math.random()* 20;
 
