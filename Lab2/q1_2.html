@@ -59,13 +59,13 @@ head.appendChild(style);
 
 var body = document.getElementsByTagName("body")[0];
 
-var calcDiv = document.createElement("div");
-calcDiv.setAttribute("id", "calculator");
-body.appendChild(calcDiv);
+var calcu = document.createElement("div");
+calcu.setAttribute("id", "calculator");
+body.appendChild(calcu);
 
-var constDiv =  document.createElement("div");
-constDiv.setAttribute("class", "flex-container");
-calcDiv.appendChild(constDiv);
+var contain =  document.createElement("div");
+contain.setAttribute("class", "flex-container");
+calcu.appendChild(contain);
 
 var symbols = [
     '(',')','±','÷','7','8','9',
@@ -77,16 +77,15 @@ buttons = symbols.length;
 
 var y = document.createElement("input");
 y.setAttribute("type", "text");
-y.setAttribute("value", "");
-calcDiv.appendChild(y);
+y.setAttribute("placeholder", "0");
+calcu.appendChild(y);
 
 for(i = 0; i < buttons; i++)
 {
-    var x = document.createElement("input");
-    x.setAttribute("type", "button");
+    var x = document.createElement("button");
     x.setAttribute("class", "flex-item");
-    x.setAttribute("value", symbols[i]);
-    calcDiv.appendChild(x);
+    x.innerHTML = symbols[i];
+    calcu.appendChild(x);
 }
 
 

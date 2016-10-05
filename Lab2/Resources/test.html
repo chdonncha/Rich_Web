@@ -10,6 +10,68 @@
   style = document.createElement("style");
   style.type = "text/css";
 
+  var css = "input[type=text] { \
+          font-size: 2em; \
+          text-align: right; \
+          border-radius: 5px; \
+          width: 240px; \
+          height: 35px; \
+          margin-bottom: 10px; \
+          padding: 1%; \
+      } \
+      button { \
+          font-size: 1.1em; \
+          border-radius: 5px; \
+          width: 50px; \
+      } \
+      .flex-container { \
+          display: inline-flex; \
+          flex-flow: row wrap; \
+          justify-content: space-between; \
+          width: 500px; \
+         background-color: lightblue; \
+     } \
+      .flex-item { \
+          text-align: center; \
+          padding: .5em; \
+          font-size: 1em; \
+          flex-grow: 1; \
+          margin: 0 5px 5px 0; \
+      } \
+      #calculator { \
+          width: 250px; \
+          font-size: 100%; \
+          border: 1px solid black; \
+          padding: 10px; \
+          border-radius: 7px; \
+          margin-left: auto; \
+          margin-right: auto; \
+          font-family: Verdana; \
+      }";
+
+  if(style.styleSheet) {
+     style.styleSheet.cssText = css;
+  }
+  else {
+     style.appendChild(document.createTextNode(css));
+  }
+
+  head.appendChild(style);
+
+var body = document.getElementsByTagName("body")[0];
+
+var calcDiv = document.createElement("div");
+calcDiv.setAttribute("id", "calculator");
+body.appendChild(calcDiv);
+
+var inputTxt = document.createElement("input");
+inputTxt.setAttribute("type", "text");
+inputTxt.setAttribute("disabled", "");
+inputTxt.setAttribute("placeholder","0");
+calcDiv.appendChild(inputTxt);
+
+
+con
 
 </script>
 
