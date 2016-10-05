@@ -3,18 +3,6 @@
 <body>
 
 <script>
-    .mystyle {
-        width: 300px;
-        height: 100px;
-        background-color: coral;
-        text-align: center;
-        font-size: 25px;
-        color: white;
-        margin-bottom: 10px;
-    }
-</script>
-
-<script>
 
 var head = document.getElementsByTagName("head")[0];
 
@@ -69,6 +57,16 @@ else {
 
 head.appendChild(style);
 
+var body = document.getElementsByTagName("body")[0];
+
+var calcDiv = document.createElement("div");
+calcDiv.setAttribute("id", "calculator");
+body.appendChild(calcDiv);
+
+var constDiv =  document.createElement("div");
+constDiv.setAttribute("class", "flex-container");
+calcDiv.appendChild(constDiv);
+
 var symbols = [
     '(',')','±','÷','7','8','9',
     'x','4','5','6','-','1','2',
@@ -80,7 +78,7 @@ buttons = symbols.length;
 var y = document.createElement("input");
 y.setAttribute("type", "text");
 y.setAttribute("value", "");
-document.body.appendChild(y);
+calcDiv.appendChild(y);
 
 for(i = 0; i < buttons; i++)
 {
@@ -88,7 +86,7 @@ for(i = 0; i < buttons; i++)
     x.setAttribute("type", "button");
     x.setAttribute("class", "flex-item");
     x.setAttribute("value", symbols[i]);
-    document.body.appendChild(x);
+    calcDiv.appendChild(x);
 }
 
 
@@ -98,12 +96,7 @@ for(i = 0; i < buttons; i++)
 //body.setAttribute("style", "width: 500px; height: 500px; background-color: blue;");
 //body.appendChild(calcDiv);
 
-var body = document.getElementsByTagName("body")[0];
 
-var calcDiv = document.createElement("div");
-
-//calcDiv.setAttribute("style", "width: 500px; height: 500px; background-color: blue;");
-body.appendChild(calcDiv);
 
 </script>
 
