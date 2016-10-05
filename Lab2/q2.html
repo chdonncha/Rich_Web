@@ -9,26 +9,10 @@
   style = document.createElement("style");
   style.type = "text/css";
 
-  var css = "input[type=text] { \
-    font-size: 2em; \
-    text-align: right; \
-    border-radius: 5px; \
-    width: 240px; \
-    height: 35px; \
-    margin-bottom: 10px; \
-    padding: 1%; \
-  } \
-  button { \
+  var css = "button { \
     font-size: 1.1em; \
     border-radius: 5px; \
     width: 50px; \
-  } \
-  .flex-container { \
-    display: inline-flex; \
-    flex-flow: row wrap; \
-    justify-content: space-between; \
-    width: 500px; \
-    background-color: lightblue; \
   } \
   .flex-item { \
     text-align: center; \
@@ -36,17 +20,7 @@
     font-size: 1em; \
     flex-grow: 1; \
     margin: 0 5px 5px 0; \
-  } \
-  #calculator { \
-    width: 250px; \
-    font-size: 100%; \
-    border: 1px solid black; \
-    padding: 10px; \
-    border-radius: 7px; \
-    margin-left: auto; \
-    margin-right: auto; \
-    font-family: Verdana; \
-  }";
+  } ";
 
   if(style.styleSheet) {
     style.styleSheet.cssText = css;
@@ -60,14 +34,34 @@
   var body = document.getElementsByTagName("body")[0];
 
   var calcu = document.createElement("div");
-  calcu.setAttribute("id", "calculator");
   body.appendChild(calcu);
 
+  var max = 20;
+  var min = 1;
+  ran = Math.random() * 20;
+
+  //for(i = 0; i < 10; i++)
   for(i = 0; i < 10; i++)
   {
     var x = document.createElement("button");
+    var init;
     x.setAttribute("class", "flex-item");
     calcu.appendChild(x);
+    var ran = Math.random()* 20;
+
+    console.log(ran);
+    if(ran >= 10)
+    {
+      init = "alive"
+      x.innerHTML = init;
+      x.setAttribute("style", "background-color: blue");
+    }
+    else
+    {
+      init = "inactive"
+      x.innerHTML = init;
+      x.setAttribute("style", "background-color: grey");
+    }
   }
 
   </script>
