@@ -43,14 +43,14 @@
   ran = Math.random() * 20;
   var column = 101;
   var row = 50;
-  //var cellCount = column * row;
-  //var cells[cellCount];
+  var cellCount = column * row;
+  var cells = [cellCount];
 
   //for(i = 0; i < 10; i++)
   for(i = 0; i < column * row ; i++)
   {
-    //var cells[i];
-    //console.log(cells[i]);
+    var cells = [i];
+    console.log(cells[i]);
     var x = document.createElement("div");
     var init;
     x.setAttribute("class", "div");
