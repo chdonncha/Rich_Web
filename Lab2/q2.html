@@ -10,12 +10,12 @@
   style.type = "text/css";
 
   var css = "div { \
-      width: 310px; \
+      width: 808px; \
       height: 600px; \
   } \
   div div { \
-      width: 50px; \
-      height: 50px; \
+      width: 8px; \
+      height: 8px; \
       float: left; \
   }";
 
@@ -39,9 +39,11 @@
   var max = 20;
   var min = 1;
   ran = Math.random() * 20;
+  row = 101;
+
 
   //for(i = 0; i < 10; i++)
-  for(i = 0; i < 101; i++)
+  for(i = 0; i < row * 50 ; i++)
   {
     var x = document.createElement("div");
     var init;
