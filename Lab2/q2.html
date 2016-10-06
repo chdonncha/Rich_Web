@@ -57,11 +57,6 @@
     calcu.appendChild(x);
     var ran = Math.random()* 20;
 
-    if(i > column)
-    {
-      console.log("this is not the first line" + i);
-    }
-
     //console.log(ran);
     if(ran >= 10)
     {
@@ -76,6 +71,12 @@
       init = false
       //x.innerHTML = init;
       x.setAttribute("style", "background-color: black");
+    }
+
+    if(i >= column)
+    {
+      //console.log("this is not the first line" + i);
+      //x.innerHTML = init;
     }
   }
 
