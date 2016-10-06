@@ -10,15 +10,15 @@
   style.type = "text/css";
 
   var css = "div { \
-      width: 808px; \
-      height: 600px; \
+    width: 808px; \
+    height: 600px; \
   } \
   div div { \
-      width: 8px; \
-      height: 8px; \
-      float: left; \
-      margin: -1px; \
-      border: 1px solid black; \
+    width: 8px; \
+    height: 8px; \
+    float: left; \
+    margin: -1px; \
+    border: 1px solid black; \
   }";
 
   if(style.styleSheet) {
@@ -32,11 +32,11 @@
 
   var body = document.getElementsByTagName("body")[0];
 
-  var calcu = document.createElement("div");
-  calcu.setAttribute("id", "div");
+  var cellGrid = document.createElement("div");
+  cellGrid.setAttribute("id", "div");
 
 
-  body.appendChild(calcu);
+  body.appendChild(cellGrid);
 
   var max = 20;
   var min = 1;
@@ -44,51 +44,100 @@
   var column = 101;
   var row = 50;
   var cellCount = column * row;
-  var cells = [];
-  var deadOrAlive = [];
+  var cells;
 
-  //for(i = 0; i < 10; i++)
-  for(i = 0; i < column * row ; i++)
-  {
-    cells.push(i);
-    //console.log(cells[i]);
-    var x = document.createElement("div");
-    var init;
-    x.setAttribute("class", "div");
-    calcu.appendChild(x);
-    var ran = Math.random()* 20;
-
-    //console.log(ran);
-    if(ran >= 10)
-    {
-      // true = alive
-      init = true
-      //x.innerHTML = init;
-      x.setAttribute("style", "background-color: white");
+  function Cell(cellGrid){
+    var isLiving;
+    var element = document.createElement("div");
+    this.getIsLiving = function(){
+      return isLiving;
     }
-    else
-    {
-      // false = inactive
-      init = false
-      //x.innerHTML = init;
-      x.setAttribute("style", "background-color: black");
+
+    this.setIsLiving = function(living){
+      isLiving = living;
+      if(living){
+        element.setAttribute("style", "background-color: white");
+      }else{
+        element.setAttribute("style", "background-color: black");
+      }
     }
-    deadOrAlive.push(init);
-    
-    console.log(deadOrAlive[i]);
 
-    if(i >= column)
-    {
-      //console.log("this is not the first line" + i);
-      //x.innerHTML = init;
+    cellGrid.appendChild(element);
 
-      // put grid logic here...
+  }
 
-      //if()
+  function randomlyGenerateCell(cellIndex){
+    var cell = new Cell(cellGrid);
+    var random = Math.random();
+    if(random <= 0.5){
+      cell.setIsLiving(true);
+    }else{
+      cell.setIsLiving(false);
     }
   }
 
-  </script>
+  function generateCellGrid(cellIndex){
+
+  }
+
+  function generateBlankGrid(){
+    for(var c = 0; c < column; c++){
+      for(var r = 0; r < row; r++){
+        var cell = new Cell(cellGrid);
+      }
+    }
+  }
+
+function populateCellGrid(){
+  generateBlankGrid();
+
+
+  }
+
+(function(){
+
+populateCellGrid();
+
+})();
+
+  //for(i = 0; i < 10; i++)
+  /*  for(i = 0; i < column * row ; i++)
+  {
+  cells.push(i);
+  //console.log(cells[i]);
+  var cell = new Cell();
+  var x = document.createElement("div");
+  var init;
+  //  x.setAttribute("class", "div");
+  calcu.appendChild(x);
+  var ran = Math.random()* 20;
+
+  //console.log(ran);
+  if(ran >= 10)
+  {
+  // true = alive
+  init = true
+  //x.innerHTML = init;
+  x.setAttribute("style", "background-color: white");
+}
+else
+{
+// false = inactive
+init = false
+//x.innerHTML = init;
+x.setAttribute("style", "background-color: black");
+}
+deadOrAlive.push(init);
+
+console.log(deadOrAlive[i]);
+
+if(i >= column)
+{
+
+}
+}*/
+
+</script>
 
 </body>
 </html>
