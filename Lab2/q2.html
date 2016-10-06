@@ -44,20 +44,25 @@
   var column = 101;
   var row = 50;
   var cellCount = column * row;
-  var cells = [cellCount];
+  var cells = [];
 
   //for(i = 0; i < 10; i++)
   for(i = 0; i < column * row ; i++)
   {
-    var cells = [i];
-    console.log(cells[i]);
+    cells.push(i);
+    //console.log(cells[i]);
     var x = document.createElement("div");
     var init;
     x.setAttribute("class", "div");
     calcu.appendChild(x);
     var ran = Math.random()* 20;
 
-    console.log(ran);
+    if(i > column)
+    {
+      console.log("this is not the first line" + i);
+    }
+
+    //console.log(ran);
     if(ran >= 10)
     {
       // true = alive
