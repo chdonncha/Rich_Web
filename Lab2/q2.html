@@ -45,6 +45,7 @@
   var row = 50;
   var cellCount = column * row;
   var cells = [];
+  var deadOrAlive = [];
 
   //for(i = 0; i < 10; i++)
   for(i = 0; i < column * row ; i++)
@@ -72,6 +73,9 @@
       //x.innerHTML = init;
       x.setAttribute("style", "background-color: black");
     }
+    deadOrAlive.push(init);
+    
+    console.log(deadOrAlive[i]);
 
     if(i >= column)
     {
