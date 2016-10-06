@@ -17,6 +17,8 @@
       width: 8px; \
       height: 8px; \
       float: left; \
+      margin: -1px; \
+      border: 1px solid black; \
   }";
 
   if(style.styleSheet) {
@@ -39,12 +41,16 @@
   var max = 20;
   var min = 1;
   ran = Math.random() * 20;
-  row = 101;
-
+  var column = 101;
+  var row = 50;
+  //var cellCount = column * row;
+  //var cells[cellCount];
 
   //for(i = 0; i < 10; i++)
-  for(i = 0; i < row * 50 ; i++)
+  for(i = 0; i < column * row ; i++)
   {
+    //var cells[i];
+    //console.log(cells[i]);
     var x = document.createElement("div");
     var init;
     x.setAttribute("class", "div");
@@ -57,14 +63,14 @@
       // true = alive
       init = true
       //x.innerHTML = init;
-      x.setAttribute("style", "background-color: blue");
+      x.setAttribute("style", "background-color: white");
     }
     else
     {
       // false = inactive
       init = false
       //x.innerHTML = init;
-      x.setAttribute("style", "background-color: grey");
+      x.setAttribute("style", "background-color: black");
     }
   }
 
