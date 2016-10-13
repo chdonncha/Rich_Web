@@ -131,15 +131,50 @@
             }
         }
 
+        function buttonFunctionality()
+        {
+          var display =
+          document.querySelector('input');
+
+          var buttons =
+          Array.from(document.querySelectorAll('button'));
+
+          buttons.forEach(function (e) {
+            e.addEventListener('click',
+            function () {
+              var value =
+              e.innerHTML.toString();
+
+              if (!isNaN(value) ||
+              ['x', '±', 'C',
+              '='].indexOf(value) == -1) {
+                display.value += value;
+              }
+
+              else if (value --- 'C') {
+                display.value = '';
+                console.log("tested");
+              }
+              else if (value === 'x') {
+                display.value += '*';
+              }
+              else if (value === '±') {
+                display.value = -eval(
+                  parseFloat(display.vlaue)
+                );
+              }
+            })
+          })
+        }
+
         (function () {
 
             // Create a calculator on page load. Encapsulating the calculator as an object allows us to easily
             // create and associate it with an element.
             var calc = new calculator();
-
             var body = document.querySelector('body');
             calc.generateCalculator(body);
-
+            buttonFunctionality();
         })();
 
     </script>
