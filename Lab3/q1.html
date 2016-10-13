@@ -78,7 +78,7 @@
             function setStyle(element, styleId) {
                 var style = getStyle(styleId);
                 for (var index in style) {
-                    // iterate through the array and use the index to find the value as well as the style.                    
+                    // iterate through the array and use the index to find the value as well as the style.
                     if (style.hasOwnProperty(index)) {
                         element.style[index] = style[index];
                     }
@@ -112,14 +112,14 @@
                 // and add the placeholder text to the container.
                 parentElement.appendChild(calculatorContainer);
                 calculatorContainer.appendChild(placeholderText);
-                calculatorContainer.appendChild(flexContainer);                
-               
+                calculatorContainer.appendChild(flexContainer);
+
                 generateButtons(flexContainer);
             }
             // Create all the buttons for the calculator. Create a button for every symbol.
             function generateButtons(parentElement) {
                 for (var index in calculatorSymbols) {
-                    // create an element with the button style. 
+                    // create an element with the button style.
                     var element = createElement("button", STYLE_BUTTON, { "class": "flex-item" });
                     setStyle(element, STYLE_FLEX_ITEM);
                     // Set the text of the element i.e. the button symbol.
@@ -133,7 +133,7 @@
 
         (function () {
 
-            // Create a calculator on page load. Encapsulating the calculator as an object allows us to easily 
+            // Create a calculator on page load. Encapsulating the calculator as an object allows us to easily
             // create and associate it with an element.
             var calc = new calculator();
 

@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+  <script>
+
+  var head = document.getElementsByTagName("head")[0];
+
+  style = document.createElement("style");
+  style.type = "text/css";
+
+  var css = "div { \
+    width: 808px; \
+    height: 600px; \
+  } \
+  div div { \
+    width: 8px; \
+    height: 8px; \
+    float: left; \
+    margin: -1px; \
+    border: 1px solid black; \
+  }";
+
+  if(style.styleSheet) {
+    style.styleSheet.cssText = css;
+  }
+  else {
+    style.appendChild(document.createTextNode(css));
+  }
+
+  head.appendChild(style);
+
+  var body = document.getElementsByTagName("body")[0];
+
+  var cellGrid = document.createElement("div");
+  cellGrid.setAttribute("id", "div");
+
+
+  body.appendChild(cellGrid);
+
+  var max = 20;
+  var min = 1;
+  ran = Math.random() * 20;
+  var column = 101;
+  var row = 50;
+  var cellCount = column * row;
+  var cells;
+
+  function Cell(cellGrid){
+    var isLiving;
+    var element = document.createElement("div");
+    this.getIsLiving = function(){
+      return isLiving;
+    }
+
+    this.setIsLiving = function(living){
+      isLiving = living;
+      if(living){
+        element.setAttribute("style", "background-color: white");
+      }else{
+        element.setAttribute("style", "background-color: black");
+      }
+    }
+
+    cellGrid.appendChild(element);
+
+  }
+
+  function randomlyGenerateCell(cellIndex){
+    var cell = new Cell(cellGrid);
+    var random = Math.random();
+    if(random <= 0.5){
+      cell.setIsLiving(true);
+    }else{
+      cell.setIsLiving(false);
+    }
+  }
+
+  function generateCellGrid(cellIndex){
+
+  }
+
+  function generateBlankGrid(){
+    for(var c = 0; c < column; c++){
+      for(var r = 0; r < row; r++){
+        var cell = new Cell(cellGrid);
+      }
+    }
+  }
+
+function populateCellGrid(){
+  generateBlankGrid();
+
+
+  }
+
+(function(){
+
+populateCellGrid();
+
+})();
+
+  //for(i = 0; i < 10; i++)
+  /*  for(i = 0; i < column * row ; i++)
+  {
+  cells.push(i);
+  //console.log(cells[i]);
+  var cell = new Cell();
+  var x = document.createElement("div");
+  var init;
+  //  x.setAttribute("class", "div");
+  calcu.appendChild(x);
+  var ran = Math.random()* 20;
+
+  //console.log(ran);
+  if(ran >= 10)
+  {
+  // true = alive
+  init = true
+  //x.innerHTML = init;
+  x.setAttribute("style", "background-color: white");
+}
+else
+{
+// false = inactive
+init = false
+//x.innerHTML = init;
+x.setAttribute("style", "background-color: black");
+}
+deadOrAlive.push(init);
+
+console.log(deadOrAlive[i]);
+
+if(i >= column)
+{
+
+}
+}*/
+
+</script>
+
+</body>
+</html>
