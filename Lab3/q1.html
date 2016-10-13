@@ -123,7 +123,7 @@
                     var element = createElement("button", STYLE_BUTTON, { "class": "flex-item" });
                     setStyle(element, STYLE_FLEX_ITEM);
                     // Set the text of the element i.e. the button symbol.
-                    console.log(calculatorSymbols[index]);
+                    //console.log(calculatorSymbols[index]);
                     element.innerHTML = calculatorSymbols[index];
                     // add the element to the parent i.e. the container.
                     parentElement.appendChild(element);
@@ -142,26 +142,40 @@
           buttons.forEach(function (e) {
             e.addEventListener('click',
             function () {
-              var value =
-              e.innerHTML.toString();
+              var value = e.innerHTML.toString();
 
               if (!isNaN(value) ||
-              ['x', '±', 'C',
-              '='].indexOf(value) == -1) {
+                ['x', '±', 'C',
+                '(', ')', '=', '÷'].indexOf(value) == -1) {
                 display.value += value;
-              }
-
-              else if (value --- 'C') {
-                display.value = '';
                 console.log("tested");
               }
-              else if (value === 'x') {
-                display.value += '*';
+
+              else if (value === 'C')
+              {
+                display.value = '';
+                //console.log("tested");
               }
-              else if (value === '±') {
+              else if (value === 'x')
+              {
+                display.value += '*';
+                console.log("multitest");
+              }
+              else if (value === '±')
+              {
                 display.value = -eval(
                   parseFloat(display.vlaue)
                 );
+                console.log("converttest");
+              }
+              else if (value === '÷')
+              {
+                display.value += '/';
+              }
+              else if (value === '=')
+              {
+                display.value = eval(display.value);
+                console.log("equaltest");
               }
             })
           })
