@@ -148,7 +148,6 @@
                 ['x', '±', 'C',
                 '(', ')', '=', '÷'].indexOf(value) == -1) {
                 display.value += value;
-                console.log("tested");
               }
 
               else if (value === 'C')
@@ -159,14 +158,12 @@
               else if (value === 'x')
               {
                 display.value += '*';
-                console.log("multitest");
               }
               else if (value === '±')
               {
                 display.value = -eval(
                   display.value *- '-1'
                 );
-                console.log("converttest");
               }
               else if (value === '÷')
               {
@@ -183,7 +180,6 @@
               else if (value === '=')
               {
                 display.value = eval(display.value);
-                console.log("equaltest");
               }
             })
           })
