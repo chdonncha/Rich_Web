@@ -59,6 +59,8 @@
                 }
             };
 
+            var buttonList;
+
             var calculatorSymbols = [
                 '(', ')', '±', '÷', '7', '8', '9',
                 'x', '4', '5', '6', '-', '1', '2',
@@ -139,6 +141,12 @@
           var buttons =
           Array.from(document.querySelectorAll('button'));
 
+          window.onPress = function(e) {
+            var key = e.keyCode ? e.keyCode : e.which;
+            value = key;
+            console.log("test");
+          }
+
           buttons.forEach(function (e) {
             e.addEventListener('click',
             function () {
@@ -148,6 +156,7 @@
                 ['x', '±', 'C',
                 '(', ')', '=', '÷'].indexOf(value) == -1) {
                 display.value += value;
+                //console.log("test");
               }
 
               else if (value === 'C')
@@ -181,6 +190,7 @@
               {
                 display.value = eval(display.value);
               }
+
             })
           })
         }
