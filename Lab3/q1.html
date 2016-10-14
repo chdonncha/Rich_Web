@@ -172,6 +172,14 @@
               {
                 display.value += '/';
               }
+              else if (value === '(')
+              {
+                display.value += '(';
+              }
+              else if (value === ')')
+              {
+                display.value += ')';
+              }
               else if (value === '=')
               {
                 display.value = eval(display.value);
