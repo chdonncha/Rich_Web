@@ -60,6 +60,7 @@
             };
 
             var buttonList;
+            var displayInput;
 
             var calculatorSymbols = [
                 '(', ')', '±', '÷', '7', '8', '9',
@@ -106,16 +107,18 @@
                 // Create the container for our calculator
                 var calculatorContainer = createElement("div", STYLE_CALCULATOR, { "id": "calculator" });
                 // Create the input place holder text
-                var placeholderText = createElement("input", STYLE_INPUT_TEXT, { "type": "text", "placeholder": "0", "disabled": "" });
+                displayInput = createElement("input", STYLE_INPUT_TEXT, { "type": "text", "placeholder": "0", "disabled": "" });
                 var flexContainer = createElement("div", STYLE_FLEX_CONTAINER, { "class": "flex-container" });
+console.log("dis:  " + displayInput);
 
                 // Add the previous two elements. Add the calculator container to the parent element
                 // which in the context of this assesement will always be body but this allows for reuse in actual production code.
                 // and add the placeholder text to the container.
                 parentElement.appendChild(calculatorContainer);
-                calculatorContainer.appendChild(placeholderText);
+                calculatorContainer.appendChild(displayInput);
                 calculatorContainer.appendChild(flexContainer);
 
+                buttonList = [];
                 generateButtons(flexContainer);
             }
             // Create all the buttons for the calculator. Create a button for every symbol.
@@ -128,9 +131,66 @@
                     //console.log(calculatorSymbols[index]);
                     element.innerHTML = calculatorSymbols[index];
                     // add the element to the parent i.e. the container.
+                    //buttonList.push({index : element});
+                    element.addEventListener('click', function(){
+                    console.log("something");
+                    });
+                    addButtonFunctionality(element);
                     parentElement.appendChild(element);
                 }
             }
+        }
+
+        window.onkeydown = function(e){
+
+        };
+
+        function addButtonFunctionality(button){
+    //      console.log("added: " + displayInput);
+          button.addEventListener('click',
+          function () {
+            var value = button.innerHTML.toString();
+
+            if (!isNaN(value) ||
+              ['x', '±', 'C',
+              '(', ')', '=', '÷'].indexOf(value) == -1) {
+              displayInput.value += value;
+              //console.log("test");
+            }
+
+            else if (value === 'C')
+            {
+              displayInput.value = '';
+              //console.log("tested");
+            }
+            else if (value === 'x')
+            {
+              displayInput.value += '*';
+            }
+            else if (value === '±')
+            {
+              displayInput.value = -eval(
+                displayInput.value *- '-1'
+              );
+            }
+            else if (value === '÷')
+            {
+              displayInput.value += '/';
+            }
+            else if (value === '(')
+            {
+              displayInput.value += '(';
+            }
+            else if (value === ')')
+            {
+              displayInput.value += ')';
+            }
+            else if (value === '=')
+            {
+              displayInput.value = eval(displayInput.value);
+            }
+
+          })
         }
 
         function buttonFunctionality()
@@ -202,7 +262,7 @@
             var calc = new calculator();
             var body = document.querySelector('body');
             calc.generateCalculator(body);
-            buttonFunctionality();
+          //  buttonFunctionality();
         })();
 
     </script>
