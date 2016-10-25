@@ -12,8 +12,8 @@
 
         // The patterns we will use to define what state the descendants should take.
         // For example row 2 is Left (inActive) Top (inActive) Right (Active) Return (Active)
-        // using true or false we represent active and inactive cells respectively. 
-        // indices 0,1,2 represent left,top and right respectively. index 4 represents the return value. 
+        // using true or false we represent active and inactive cells respectively.
+        // indices 0,1,2 represent left,top and right respectively. index 4 represents the return value.
         // i.e. should the cell be active or inactive.
         var activeStatePatterns = [
             [false, false, false, false],
@@ -62,7 +62,7 @@
         }
 
         // The cell object holds information regarding its state as well as functions to
-        // easily access and modify that state. The cell encapsulates appropriate behaviour 
+        // easily access and modify that state. The cell encapsulates appropriate behaviour
         // allowing the user to easily create multiple cells without having to worry about repitious code
         // or setting up the associated element to match its desired state.
         function Cell(cellGridContainer) {
@@ -84,10 +84,11 @@
             // Auto add the cell to the cell grid container upon creation.
             cellGridContainer.appendChild(element);
         }
-        // Gets all ancestor at a given index and stores them in an array. 
+        // Gets all ancestor at a given index and stores them in an array.
         function getAncestorCells(rowIndex, columnIndex) {
             // create a new array with 3 objects
             var cells = new Array(3);
+            // inlucde mod instead of using a turnary operator
             var leftIndex = (columnIndex - 1) < 0 ? columnGridSize - 1 : columnIndex - 1; // Wrap around if less than 0
             var rightIndex = (columnIndex + 1) >= columnGridSize ? 0 : columnIndex + 1; // Wrap around if greater than grid size
             var topIndex = rowIndex - 1;
@@ -114,7 +115,7 @@
             return false;
         }
 
-        // Randomly generate a cell at the specified indices to be either active or inactive.                 
+        // Randomly generate a cell at the specified indices to be either active or inactive.
         function randomlyGenerateCell(row, column) {
             var cell = cellGrid[row][column];
             var random = Math.random();
