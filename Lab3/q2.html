@@ -28,23 +28,31 @@
 
         getJSON('http://jsonplaceholder.typicode.com/users').then(function (data) {
 
-            var i = 0;
-            while (data[i].username) {
-                console.log('Usernames: ' + data[i].username);
-                i++
+            //var i = 0;
+            //while (data[i].username) {
+            //    console.log('Usernames: ' + data[i].username);
+            //    i++
+            //    //use promise?
+            //}
+
+
+            // interate through all user ids and extract required data from each user associated with that id
+            var j = 0;
+            while (data[j].id) {
+                if (typeof data[j].id === "undefined" && data[j].id == null) {
+                    console.log("hit null");
+                    Promise.reject;
+                }
+                else {
+                    console.log('Usernames: ' + data[j].username + ' id: ' +
+                        data[j].id + ' Company Name: ' + data[j].company.name +
+                        ' Zipcode: ' + data[j].address.zipcode);
+                    j++;
+                }
             }
-
-      
-        }, function (status) { //error detection....
-            alert('Something went wrong.');
+        }).catch(function onerror(error) {
+            console.log(error.stack);
         });
-
-
-        (function () {
-
- 
-        })();
-
 
     </script>
 
