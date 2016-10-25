@@ -27,14 +27,12 @@
         };
 
         getJSON('http://jsonplaceholder.typicode.com/users').then(function (data) {
-            //for (var i = 0; i < 10; i++)
-            //{
+
             var i = 0;
             while (data[i].username) {
                 console.log('Usernames: ' + data[i].username);
                 i++
             }
-            //}
 
       
         }, function (status) { //error detection....
