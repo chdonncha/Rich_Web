@@ -9,7 +9,7 @@
 
     <script>
 
-        var getJSON = function (url) {
+        var fetch = function (url) {
             return new Promise(function (resolve, reject) {
                 var xhr = new XMLHttpRequest();
                 xhr.open('get', url, true);
@@ -26,27 +26,20 @@
             });
         };
 
-        getJSON('http://jsonplaceholder.typicode.com/users').then(function (data) {
+        fetch('http://jsonplaceholder.typicode.com/users').then(function (result) {
 
-            //var i = 0;
-            //while (data[i].username) {
-            //    console.log('Usernames: ' + data[i].username);
-            //    i++
-            //    //use promise?
-            //}
+            console.log(result);
 
-
-            // interate through all user ids and extract required data from each user associated with that id
             var j = 0;
-            while (data[j].id) {
-                if (typeof data[j].id === "undefined" && data[j].id == null) {
+            while (result[j].id) {
+                if (typeof result[j].id === "undefined" && result[j].id == null) {
                     console.log("hit null");
                     Promise.reject;
                 }
                 else {
-                    console.log('Usernames: ' + data[j].username + ' id: ' +
-                        data[j].id + ' Company Name: ' + data[j].company.name +
-                        ' Zipcode: ' + data[j].address.zipcode);
+                    console.log('Usernames: ' + result[j].username + ' id: ' +
+                        result[j].id + ' Company Name: ' + result[j].company.name +
+                        ' Zipcode: ' + result[j].address.zipcode);
                     j++;
                 }
             }
