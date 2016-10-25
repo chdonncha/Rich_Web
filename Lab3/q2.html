@@ -1,23 +1,52 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html>
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width">
-  <title>Calculator</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>Calculator</title>
 </head>
 <body>
+
     <script>
 
-    function dostuff() {
+        var getJSON = function (url, callback) {
+            var xhr = new XMLHttpRequest();
+            xhr.open("get", url, true);
+            xhr.responseType = "json";
+            xhr.onload = function () {
+                var status = xhr.status;
+                if (status == 200) {
+                    callback(null, xhr.response);
+                } else {
+                    callback(status);
+                }
+            };
+            xhr.send();
+        };
 
-      console.log("hello!");
+        function dostuff() {
 
-    }
+            getJSON("http://jsonplaceholder.typicode.com/users",
+            function (err, data) {
+                if (err != null) {
+                    alert("Something went wrong: " + err);
+                } else {
+                    alert("Your query count: " + data.username);
+                }
+            });
 
-    (function () {
+            var arr = ['array 1', 'array 2'];
 
-           dostuff();
-       })();
+            for (let i in arr) {
+                console.log(arr[i]);
+            }
+        }
+
+        (function () {
+
+            dostuff();
+        })();
+
 
     </script>
 
