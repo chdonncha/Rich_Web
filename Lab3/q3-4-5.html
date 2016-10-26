@@ -1,0 +1,142 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+</head>
+<body>
+
+    <script>      
+
+        // QUESTION - 3
+        // As well as being part of Question 4 & 5 this function was created in association with
+        // question 3. It matches the provided signature, allowing a user to pass in a URL as well as an object array of options.
+        // The function handles errors as well as undefined options. Defaulting to the specified parameters.
+        // In an ideal situation the function will return a response from the server. Otherwise it will return an error with an appropriate message.
+        function fetch(url, options) {            
+            // ensure options is not undefined. Set it to an empty array if it is.
+            options = options || {};
+            return new Promise(function (resolve, reject) {
+                // Check if our http method is specified. Is so use the specified one. If not use GET by default.
+                var httpMethod = options.hasOwnProperty('method') ? options.method : 'GET';
+                try {
+                    var xhr = new XMLHttpRequest();
+                    xhr.onreadystatechange = function () {
+                        if (xhr.readyState == XMLHttpRequest.DONE) {
+                            // Finished getting our request and 200 indicates a successful result
+                            if (xhr.status == 200) {
+                                resolve(xhr.response);
+                            } else {
+                                // Otherwise we are finished and did not get a successful result.
+                                reject("Http Request Error: " + xhr.statusText);
+                            }
+                        }
+                    }
+                    // Check if we have any headers specified and assign them to the request header.
+                    if (options.hasOwnProperty("header")) {
+                        for (var index in options.header) {
+                            xhr.setRequestHeader(index, options.header);
+                        }
+                    }
+
+                    xhr.open(httpMethod, url, true);
+                    xhr.send();
+                } catch (e) {
+                    reject("Failed to make request: " + e);
+                }
+            });
+        };
+
+        // QUESTION - 4
+        // This question makes user of the function from the previous question. By using it we can retrieve a response from a server
+        // with the string needed to parse a json object. We parse it and can then read our data accordingly. 
+        // We will then count specific users as well as sort them in a specific order.
+        function parseJSONArray() {
+
+            fetch('http://jsonplaceholder.typicode.com/todos').then(function (result) {
+                console.log("QUESTION 4");
+                var json;
+                // Parse the json and do some error checking to ensure it is valid JSON.
+                try {
+                    json = JSON.parse(result);
+                } catch (e) {
+                    console.log("Could not parse JSON. Result: " + result);
+                    return;
+                }
+
+                // find every element with user10
+                var todos = json.filter(function (item) { return item.userId === 10; });
+                var todoCount = todos.length;
+
+                // QUESTION 4.1 RESULT
+                console.log("There are " + todoCount + " todos for user 10");
+
+                // Build our array of userIds.
+                //var userIds = json.map(function (item) { return item.userId; });
+
+                var userIds = [];
+
+                json.forEach(function (item, index, arr) {
+                    // Check if we already have the user Id in our array.
+                    // If not add it otherwise ignore it. This prevents our array from
+                    // becoming cluttered with userIds.
+                    if (!userIds.hasOwnProperty(item.userId)) {
+                        // Get the uncompleted tasks associated with the user and cache them.
+                        var uncompletedTodos = countUserUncompletedTasks(item.userId, json);
+                        var user = { "userId": item.userId, "uncompletedTodos": uncompletedTodos };
+                        userIds.push(user);
+                    }
+                });
+
+                // We can use the same pattern as the previous function to extend the array object to include a new function for counting values associated with an index.
+                // This will be a cleaner way to allow us to count the elements stored in the userIds array.
+                // We count a and b and can then compare them to sort them properly in the array. 
+                userIds.sort(function (a, b) {
+                    // More uncompleted tasks for this user
+                    if (a.uncompletedTodos > b.uncompletedTodos) {
+                        return -1;
+                    }
+                    // B is greater bring it closer to the front.
+                    if (a.uncompletedTodos < b.uncompletedTodos) {
+                        return 1;
+                    }
+                    // A and B are the same value. Don't do anything.
+                    return 0;
+                });
+                // QUESTION 4.2 RESULT
+                console.log(userIds);
+
+            }).catch(function (error) {
+                console.log(error);
+            });
+        }        
+
+        function countUserUncompletedTasks(userId, array) {
+            var a = array.filter(function(item) {
+                return (item.userId == userId) && item.completed == false;
+            });
+
+            return a.length;
+        }
+        // QUESTION 5
+        // This question demonstrates calling a resource from an invalid URL and handling the error that follows it.
+        // Catch will be called when the request fails. We can then decide what to do when this happens.
+        function failedRequest() {
+            fetch('http://www.example.com/todos').then(function (result) {
+                console.log("I failed by succeding.");
+            }).catch(function (error)
+            {
+              console.log("this question is always going to fail since the request is not valid. This is an example of catching the exception.");  
+            });
+        }
+
+        (function () {
+            parseJSONArray();
+            failedRequest();
+        })();
+
+    </script>
+
+</body>
+</html>

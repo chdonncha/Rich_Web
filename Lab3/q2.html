@@ -1,53 +1,373 @@
 ﻿<!DOCTYPE html>
-<html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width">
-    <title>Calculator</title>
+    <meta charset="utf-8" />
+    <title></title>
 </head>
 <body>
-
     <script>
 
-        var fetch = function (url) {
-            return new Promise(function (resolve, reject) {
-                var xhr = new XMLHttpRequest();
-                xhr.open('get', url, true);
-                xhr.responseType = 'json';
-                xhr.onload = function () {
-                    var status = xhr.status;
-                    if (status == 200) {
-                        resolve(xhr.response);
-                    } else {
-                        reject(status);
+        // Array structure copied and pasted from example page. 
+        // Could have used an xmlHttpRequest to parse the data from the page. 
+        // However since this is not specified we will just do it as such. 
+        // The example on xmlHttpRequest will come in the subsequent questions.
+        var arrayStructure = [
+            {
+                "id": 1,
+                "name": "Leanne Graham",
+                "username": "Bret",
+                "email": "Sincere@april.biz",
+                "address": {
+                    "street": "Kulas Light",
+                    "suite": "Apt. 556",
+                    "city": "Gwenborough",
+                    "zipcode": "92998-3874",
+                    "geo": {
+                        "lat": "-37.3159",
+                        "lng": "81.1496"
                     }
-                };
-                xhr.send();
-            });
-        };
-
-        fetch('http://jsonplaceholder.typicode.com/users').then(function (result) {
-
-            console.log(result);
-
-            var j = 0;
-            while (result[j].id) {
-                if (typeof result[j].id === "undefined" && result[j].id == null) {
-                    console.log("hit null");
-                    Promise.reject;
+                },
+                "phone": "1-770-736-8031 x56442",
+                "website": "hildegard.org",
+                "company": {
+                    "name": "Romaguera-Crona",
+                    "catchPhrase": "Multi-layered client-server neural-net",
+                    "bs": "harness real-time e-markets"
                 }
-                else {
-                    console.log('Usernames: ' + result[j].username + ' id: ' +
-                        result[j].id + ' Company Name: ' + result[j].company.name +
-                        ' Zipcode: ' + result[j].address.zipcode);
-                    j++;
+            },
+            {
+                "id": 2,
+                "name": "Ervin Howell",
+                "username": "Antonette",
+                "email": "Shanna@melissa.tv",
+                "address": {
+                    "street": "Victor Plains",
+                    "suite": "Suite 879",
+                    "city": "Wisokyburgh",
+                    "zipcode": "90566-7771",
+                    "geo": {
+                        "lat": "-43.9509",
+                        "lng": "-34.4618"
+                    }
+                },
+                "phone": "010-692-6593 x09125",
+                "website": "anastasia.net",
+                "company": {
+                    "name": "Deckow-Crist",
+                    "catchPhrase": "Proactive didactic contingency",
+                    "bs": "synergize scalable supply-chains"
+                }
+            },
+            {
+                "id": 3,
+                "name": "Clementine Bauch",
+                "username": "Samantha",
+                "email": "Nathan@yesenia.net",
+                "address": {
+                    "street": "Douglas Extension",
+                    "suite": "Suite 847",
+                    "city": "McKenziehaven",
+                    "zipcode": "59590-4157",
+                    "geo": {
+                        "lat": "-68.6102",
+                        "lng": "-47.0653"
+                    }
+                },
+                "phone": "1-463-123-4447",
+                "website": "ramiro.info",
+                "company": {
+                    "name": "Romaguera-Jacobson",
+                    "catchPhrase": "Face to face bifurcated interface",
+                    "bs": "e-enable strategic applications"
+                }
+            },
+            {
+                "id": 4,
+                "name": "Patricia Lebsack",
+                "username": "Karianne",
+                "email": "Julianne.OConner@kory.org",
+                "address": {
+                    "street": "Hoeger Mall",
+                    "suite": "Apt. 692",
+                    "city": "South Elvis",
+                    "zipcode": "53919-4257",
+                    "geo": {
+                        "lat": "29.4572",
+                        "lng": "-164.2990"
+                    }
+                },
+                "phone": "493-170-9623 x156",
+                "website": "kale.biz",
+                "company": {
+                    "name": "Robel-Corkery",
+                    "catchPhrase": "Multi-tiered zero tolerance productivity",
+                    "bs": "transition cutting-edge web services"
+                }
+            },
+            {
+                "id": 5,
+                "name": "Chelsey Dietrich",
+                "username": "Kamren",
+                "email": "Lucio_Hettinger@annie.ca",
+                "address": {
+                    "street": "Skiles Walks",
+                    "suite": "Suite 351",
+                    "city": "Roscoeview",
+                    "zipcode": "33263",
+                    "geo": {
+                        "lat": "-31.8129",
+                        "lng": "62.5342"
+                    }
+                },
+                "phone": "(254)954-1289",
+                "website": "demarco.info",
+                "company": {
+                    "name": "Keebler LLC",
+                    "catchPhrase": "User-centric fault-tolerant solution",
+                    "bs": "revolutionize end-to-end systems"
+                }
+            },
+            {
+                "id": 6,
+                "name": "Mrs. Dennis Schulist",
+                "username": "Leopoldo_Corkery",
+                "email": "Karley_Dach@jasper.info",
+                "address": {
+                    "street": "Norberto Crossing",
+                    "suite": "Apt. 950",
+                    "city": "South Christy",
+                    "zipcode": "23505-1337",
+                    "geo": {
+                        "lat": "-71.4197",
+                        "lng": "71.7478"
+                    }
+                },
+                "phone": "1-477-935-8478 x6430",
+                "website": "ola.org",
+                "company": {
+                    "name": "Considine-Lockman",
+                    "catchPhrase": "Synchronised bottom-line interface",
+                    "bs": "e-enable innovative applications"
+                }
+            },
+            {
+                "id": 7,
+                "name": "Kurtis Weissnat",
+                "username": "Elwyn.Skiles",
+                "email": "Telly.Hoeger@billy.biz",
+                "address": {
+                    "street": "Rex Trail",
+                    "suite": "Suite 280",
+                    "city": "Howemouth",
+                    "zipcode": "58804-1099",
+                    "geo": {
+                        "lat": "24.8918",
+                        "lng": "21.8984"
+                    }
+                },
+                "phone": "210.067.6132",
+                "website": "elvis.io",
+                "company": {
+                    "name": "Johns Group",
+                    "catchPhrase": "Configurable multimedia task-force",
+                    "bs": "generate enterprise e-tailers"
+                }
+            },
+            {
+                "id": 8,
+                "name": "Nicholas Runolfsdottir V",
+                "username": "Maxime_Nienow",
+                "email": "Sherwood@rosamond.me",
+                "address": {
+                    "street": "Ellsworth Summit",
+                    "suite": "Suite 729",
+                    "city": "Aliyaview",
+                    "zipcode": "45169",
+                    "geo": {
+                        "lat": "-14.3990",
+                        "lng": "-120.7677"
+                    }
+                },
+                "phone": "586.493.6943 x140",
+                "website": "jacynthe.com",
+                "company": {
+                    "name": "Abernathy Group",
+                    "catchPhrase": "Implemented secondary concept",
+                    "bs": "e-enable extensible e-tailers"
+                }
+            },
+            {
+                "id": 9,
+                "name": "Glenna Reichert",
+                "username": "Delphine",
+                "email": "Chaim_McDermott@dana.io",
+                "address": {
+                    "street": "Dayna Park",
+                    "suite": "Suite 449",
+                    "city": "Bartholomebury",
+                    "zipcode": "76495-3109",
+                    "geo": {
+                        "lat": "24.6463",
+                        "lng": "-168.8889"
+                    }
+                },
+                "phone": "(775)976-6794 x41206",
+                "website": "conrad.com",
+                "company": {
+                    "name": "Yost and Sons",
+                    "catchPhrase": "Switchable contextually-based project",
+                    "bs": "aggregate real-time technologies"
+                }
+            },
+            {
+                "id": 10,
+                "name": "Clementina DuBuque",
+                "username": "Moriah.Stanton",
+                "email": "Rey.Padberg@karina.biz",
+                "address": {
+                    "street": "Kattie Turnpike",
+                    "suite": "Suite 198",
+                    "city": "Lebsackbury",
+                    "zipcode": "31428-2261",
+                    "geo": {
+                        "lat": "-38.2386",
+                        "lng": "57.2232"
+                    }
+                },
+                "phone": "024-648-3804",
+                "website": "ambrose.net",
+                "company": {
+                    "name": "Hoeger LLC",
+                    "catchPhrase": "Centralized empowering task-force",
+                    "bs": "target end-to-end models"
                 }
             }
-        }).catch(function onerror(error) {
-            console.log(error.stack);
-        });
+        ];
+
+        function getAllUsernames() {
+            var users = [];
+
+            arrayStructure.forEach(function (item, index, arr) {
+                users.push(item.name);
+            });
+
+            var mapUsers = arrayStructure.map((function (item) {
+                return item.name;
+            }));
+            console.log("ALL USERNAMES");
+            console.log(users);
+            console.log(mapUsers);
+
+        }
+
+        function getGeoCoords() {
+            var geoCoords = [];
+
+            arrayStructure.forEach(function (item, index, arr) {
+                var coords = {
+                    "lat": item.address.geo.lat,
+                    "lng": item.address.geo.lng
+                };
+                geoCoords.push(coords);
+            });
+
+            var mapGeoCoords = arrayStructure.map((function (item) {
+                return item.address.geo;
+            }));
+
+            console.log("GEO COORDS");
+            console.log(geoCoords);
+            console.log(mapGeoCoords);
+        }
+
+        function getUsersArray() {
+            var users = [];
+
+            arrayStructure.forEach(function (item, index, arr) {
+                var user = {
+                    "Name": item.name,
+                    "Id": item.id,
+                    "Company name": item.company.name,
+                    "Zipcode": item.address.zipcode
+                };
+                users.push(user);
+            });
+
+            var mapUsers = arrayStructure.map(function (item) {
+                var user = {
+                    "Name": item.name,
+                    "Id": item.id,
+                    "Company name": item.company.name,
+                    "Zipcode": item.address.zipcode
+                };
+                return user;
+            });
+
+            console.log("USERS ARRAY");
+            console.log(users);
+            console.log(mapUsers);
+        }
+
+        function getStreetNames() {
+            var addresses = [];
+            // Big O Notation
+            // O(N)
+            arrayStructure.forEach(function (item, index, arr) {
+                if (item.address.zipcode[0] === '5') {
+                    addresses.push(item.address.street);
+                }
+            });
+            // Use a filter to filter out every item that does not match our condition.
+            // Once we have a filtered collection we then map that collection to how we want to structure the array.
+            // Also it should be pointed out that this example is a trade off in peformance for readability.
+            // Essentially we are looping over two collection where the previous foreach example only loops over the first collection.
+            // The first collection in this case being the entire array and the second "probably" being a smaller array.
+            // Big O Notation
+            // O(N + K)
+            var mapAddresses = arrayStructure.filter(function (item) {
+                return item.address.zipcode[0] === '5';
+            }).map(function (item) {
+                return item.address.street;
+            });
+
+            console.log("STREET NAME");
+            console.log(addresses);
+            console.log(mapAddresses);
+        }
+
+        function getUserIdsProduct() {
+            var product = 0;
+
+            arrayStructure.forEach(function (item, index, arr) {
+                // We shouldn't multiply by zero for this example. If the product is 0
+                // simply set the product to be the item id. We could just set the product as 1
+                // and for this specific example it will work perfectly. However in a real world example
+                // where we set a product to 1 (since anything multiplied by one will be itself) and we have
+                // no items in our collection, this will cause us to spit out an invalid result. i.e. product is 
+                // equal to 1 when realistically it should be 0. So by doing this check we avaoid this and ensure a valid result.
+                if (product === 0) {
+                    product = item.id;
+                } else {
+                    product *= item.id;
+                }
+            });
+
+            console.log("THE PRODUCT OF ALL IDS IS: " + product);
+        }
+
+
+        (function () {
+            // Call all the functions associated with the specifications of this question. 
+            // Where applicable functions may use foreach or a map to build the array. 
+            // This was to demonstrate the different means in achieving the same task.        
+            getAllUsernames();
+            getGeoCoords();
+            getUsersArray();
+            getStreetNames();
+            getUserIdsProduct();
+        })();
 
     </script>
-
 </body>
 </html>
