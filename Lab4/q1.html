@@ -3,90 +3,52 @@
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="utf-8" />
+    <link rel="stylesheet" type="text/css" href="style.css">
     <title></title>
 </head>
 <body>
-    <style id="jsbin-css">
-
-        .row {
-            display: flex;
-        }
-
-        .col {
-            flex: 1;
-            padding: 1em;
-            border-color: grey;
-        }
-
-        section {
-            position: absolute;
-            background-color: white;
-            font-family: "Arial", Times, serif;
-        }
-
-        .full-width-div {
-            padding-left: 5%;
-            padding-right: 5%;
-        }
-
-        input[type="checkbox"] {
-            margin-top: 5%;
-            margin-bottom: 5%;
-        }
-
-        input[type="button"] {
-            border: none;
-            color: grey;
-            font-size: 80%;
-            font-weight: bold;
-            background-color: #E8E8EE;
-            width: 25%;
-            height: 35px;
-            margin-left: 20px;
-            margin-right: 20px;
-        }
-
-        input[type="security"] {
-            width: 15%;
-            text-align: center;
-        }
-
-        #sidebar {
-            width: 100%;
-            padding-left: 5%;
-            padding-right: 5%;
-        }
-
-        .buttonHolder {
-            text-align: center;
-        }
-
-        hr {
-            border: 0;
-            height: 1px;
-            background: lightgrey;
-        }
-
-        .indent {
-            padding-left: 5%;
-            padding-right: 5%;
-        }
-
-        h3 {
-            color: grey;
-        }
-    </style>
+    
+    <style src="mystyle.css"></style>
     <div class="row">
         <div class="col">
             <div class="buttonHolder">
-                <input type="text" name="username" value="username">
-                <input type="submit" value="Submit">
+                <input type="text" name="username" placeholder="username">
+                <input type="button" value="Submit">
             </div>
         </div>
     </div>
-
-    <label>User Profile</label>
-    <label>User Repos</label>
+    <div class="row">
+        <div class="col">
+            <label>User Profile</label><br />
+            <div class="imgElement">
+                <div class="profileElement">
+                    <img src="1.jpg">
+                </div>
+            </div>
+            <div class="profileElement">
+                <label> Name</label><br />
+            </div>
+            <div class="profileElement">
+                <label> Username</label><br />
+            </div>
+            <div class="profileElement">
+                <label> Email</label><br />
+            </div>
+            <div class="profileElement">
+                <label> Location</label><br />
+            </div>
+            <div class="profileElement">
+                <label> Number of Gists</label><br />
+            </div>
+        </div>
+        <div class="col">
+            <label>User Repos</label>
+            <div class="userRepo">
+                <label> Name</label><br />
+                <label> Description</label><br />
+            </div>
+        </div>
+    </div>
 
     <script>
 
