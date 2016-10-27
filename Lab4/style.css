@@ -1,6 +1,5 @@
 .row {
     display: flex;
-    font-family: "Arial", Times, serif;
 }
 
 .col {
@@ -10,7 +9,7 @@
 }
 
 section {
-    position: absolute;
+    /*position: absolute;*/
     background-color: white;
     font-family: "Arial", Times, serif;
 }
@@ -82,7 +81,7 @@ h3 {
 }
 
 .profileElement {
-    border: 1px solid black;
+    border: 1px solid grey;
 }
 
 .profileElement div {
@@ -95,10 +94,11 @@ h3 {
     padding-left: 10px;
 }
 .profileElement div:not(:last-child) {
-    border-bottom: 1px solid black;
+    border-bottom: 1px solid grey;
 }
-
 
 img {
     padding: 1em;
+  
 }
+

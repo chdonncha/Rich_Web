@@ -9,36 +9,38 @@
 <body>
 
     <style src="mystyle.css"></style>
-    <div class="row">
-        <div class="col">
-            <div class="buttonHolder">
-                <input type="text" name="username" placeholder="Username">
-                <input type="button" value="Submit">
-            </div>
-        </div>
-    </div>
-
-    <div class="row">
-        <div class="col">
-            <label><b>User Profile</b></label><br />
-            <div class="profileElement">
-                <div><img src="1.jpg" id="user_avatar" /></div>
-                <div><span><b>Name: </b></span></div>
-                <div><span><b>Username: </b></span></div>
-                <div><span><b>Email: </b></span></div>
-                <div><span><b>Location: </b></span></div>
-                <div><span><b>Number of Gists: </b></span></div>
+    <section>
+        <div class="row">
+            <div class="col">
+                <div class="buttonHolder">
+                    <input id="inputname" type="text" placeholder="Username">
+                    <input onclick="getInput()" id="submitname" type="button" value="Submit">
+                </div>
             </div>
         </div>
 
-        <div class="col">
-            <label><b>User Repos</b></label>
-            <div class="userRepo">
-                <label> Name</label><br />
-                <label> Description</label><br />
+        <div class="row">
+            <div class="col">
+                <div><b>User Profile</b></div><br />
+                <div class="profileElement">
+                    <div><img src="1.jpg" id="user_avatar" /></div>
+                    <div id="username"><span><b>Name </b></span></div>
+                    <div><span><b>Username </b></span></div>
+                    <div><span><b>Email </b></span></div>
+                    <div><span><b>Location </b></span></div>
+                    <div><span><b>Number of Gists </b></span></div>
+                </div>
+            </div>
+
+            <div class="col">
+               <div><b>User Repos</b></div><br />
+                <div class="userRepo">
+                    <label> Name</label><br />
+                    <label> Description</label><br />
+                </div>
             </div>
         </div>
-    </div>
+    </section>
 
     <script>
 
@@ -76,12 +78,20 @@
             });
         };
 
+        function getInput() {
+            var getInput = document.getElementById('inputname').value;
+            var searchUsername = document.getElementById('username').innerHTML = getInput;
+
+            if (searchUsername == null || searchUsername == "") {
+                console.log("please enter a username");
+            }
+            console.log("tested");
+        }
+
         function parseJSONArray() {
 
             fetch('https://api.github.com/users').then(function (result) {
 
-                console.log("test");
-                console.log(result);
                 var json;
                 // Parse the json and do some error checking to ensure it is valid JSON.
                 try {
@@ -90,8 +100,16 @@
                     console.log("Could not parse JSON. Result: " + result);
                     return;
                 }
+                
+                var x = document.forms['']
+
+                var todos = json.filter(function (item) { return item.login === 'mojombo'; });
+                console.log(todos);
+
+                var getUsername = document.getElementById('username').innerHTML = 'hello';
             });
         }
+
 
         (function () {
             parseJSONArray();
