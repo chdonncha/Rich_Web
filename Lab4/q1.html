@@ -1,0 +1,71 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+</head>
+<body>
+
+    <script>
+
+        function fetch(url, options) {
+            // ensure options is not undefined. Set it to an empty array if it is.
+            options = options || {};
+            return new Promise(function (resolve, reject) {
+                // Check if our http method is specified. Is so use the specified one. If not use GET by default.
+                var httpMethod = options.hasOwnProperty('method') ? options.method : 'GET';
+                try {
+                    var xhr = new XMLHttpRequest();
+                    xhr.onreadystatechange = function () {
+                        if (xhr.readyState == XMLHttpRequest.DONE) {
+                            // Finished getting our request and 200 indicates a successful result
+                            if (xhr.status == 200) {
+                                resolve(xhr.response);
+                            } else {
+                                // Otherwise we are finished and did not get a successful result.
+                                reject("Http Request Error: " + xhr.statusText);
+                            }
+                        }
+                    }
+                    // Check if we have any headers specified and assign them to the request header.
+                    if (options.hasOwnProperty("header")) {
+                        for (var index in options.header) {
+                            xhr.setRequestHeader(index, options.header);
+                        }
+                    }
+
+                    xhr.open(httpMethod, url, true);
+                    xhr.send();
+                } catch (e) {
+                    reject("Failed to make request: " + e);
+                }
+            });
+        };
+
+        function parseJSONArray() {
+
+            fetch('https://api.github.com/users').then(function (result) {
+               
+                console.log("test");
+                console.log(result);
+                var json;
+                // Parse the json and do some error checking to ensure it is valid JSON.
+                try {
+                    json = JSON.parse(result);
+                } catch (e) {
+                    console.log("Could not parse JSON. Result: " + result);
+                    return;
+                }
+            });
+        }
+
+        (function () {
+            parseJSONArray();
+            //failedRequest();
+        })();
+
+    </script>
+
+</body>
+</html>
