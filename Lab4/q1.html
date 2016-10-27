@@ -6,9 +6,85 @@
     <title></title>
 </head>
 <body>
+    <style id="jsbin-css">
 
-    <input type="text" name="username" value="username"><br>
-    <input type="submit" value="Submit">
+        .row {
+            display: flex;
+        }
+
+        .col {
+            flex: 1;
+            padding: 1em;
+            border-color: grey;
+        }
+
+        section {
+            position: absolute;
+            background-color: white;
+            font-family: "Arial", Times, serif;
+        }
+
+        .full-width-div {
+            padding-left: 5%;
+            padding-right: 5%;
+        }
+
+        input[type="checkbox"] {
+            margin-top: 5%;
+            margin-bottom: 5%;
+        }
+
+        input[type="button"] {
+            border: none;
+            color: grey;
+            font-size: 80%;
+            font-weight: bold;
+            background-color: #E8E8EE;
+            width: 25%;
+            height: 35px;
+            margin-left: 20px;
+            margin-right: 20px;
+        }
+
+        input[type="security"] {
+            width: 15%;
+            text-align: center;
+        }
+
+        #sidebar {
+            width: 100%;
+            padding-left: 5%;
+            padding-right: 5%;
+        }
+
+        .buttonHolder {
+            text-align: center;
+        }
+
+        hr {
+            border: 0;
+            height: 1px;
+            background: lightgrey;
+        }
+
+        .indent {
+            padding-left: 5%;
+            padding-right: 5%;
+        }
+
+        h3 {
+            color: grey;
+        }
+    </style>
+    <div class="row">
+        <div class="col">
+            <div class="buttonHolder">
+                <input type="text" name="username" value="username">
+                <input type="submit" value="Submit">
+            </div>
+        </div>
+    </div>
+
     <label>User Profile</label>
     <label>User Repos</label>
 
