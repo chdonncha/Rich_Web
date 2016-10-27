@@ -7,6 +7,11 @@
 </head>
 <body>
 
+    <input type="text" name="username" value="username"><br>
+    <input type="submit" value="Submit">
+    <label>User Profile</label>
+    <label>User Repos</label>
+
     <script>
 
         function fetch(url, options) {
@@ -46,7 +51,7 @@
         function parseJSONArray() {
 
             fetch('https://api.github.com/users').then(function (result) {
-               
+
                 console.log("test");
                 console.log(result);
                 var json;
