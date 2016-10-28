@@ -34,7 +34,7 @@
 
             <div class="col">
                 <div><b>User Repos</b></div><br />
-                <div class="userRepo">
+                <div id="userRepo">
                     <label> Name</label><br />
                     <label> Description</label><br />
                 </div>
@@ -148,7 +148,7 @@
             var gitnum = document.getElementById('gistnum');
             gitnum.innerHTML = "Gist Number: " + json.public_gists;
         }
-       
+
         function findData() {
             parseUserArray();
             parseReposArray();
@@ -171,7 +171,18 @@
                 }
                 console.log(json);
 
-                var userIds = json.map(function (item) { return item.userId; });
+                var info = json.map(function (item) { return [item.name, item.description]; });
+                console.log(info);
+
+                var setRepos = document.getElementById('userRepo');
+                for (var i = 0; i < info.length; i++) {
+
+                    var repo_row = document.createElement('div');
+                    repo_row.innerHTML += '<div>' + info[i] + '</div>';
+                    setRepos.appendChild(repo_row);
+                    //setRepos.innerHTML = info[i];
+                }
+                
 
             });
         }
