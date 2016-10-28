@@ -24,11 +24,11 @@
                 <div><b>User Profile</b></div><br />
                 <div class="profileElement">
                     <div><img src="1.jpg" id="user_avatar" /></div>
-                    <div id="username" style="font-weight: bold; padding: 10px;">Name</div>
-                    <div><span><b>Username </b></span></div>
-                    <div><span><b>Email </b></span></div>
-                    <div><span><b>Location </b></span></div>
-                    <div><span><b>Number of Gists </b></span></div>
+                    <div id="name" style="font-weight: bold; padding: 10px;">Name</div>
+                    <div id="username" style="font-weight: bold; padding: 10px;">Username</div>
+                    <div id="email" style="font-weight: bold; padding: 10px;">Email</div>
+                    <div id="location" style="font-weight: bold; padding: 10px;">Location</div>
+                    <div id="gistnum" style="font-weight: bold; padding: 10px;">Number of Gists</div>
                 </div>
             </div>
 
@@ -98,8 +98,8 @@
         function parseJSONArray() {
 
             var user = getInput();
-            var getUser = document.getElementById('inputname').value;
-            var fetchURL = 'https://api.github.com/users/' + getUser;
+
+            var fetchURL = 'https://api.github.com/users/' + user;
             console.log(fetchURL);
             fetch(fetchURL).then(function (result) {
 
@@ -112,18 +112,12 @@
                     return;
                 }
 
-                var data = json.filter(function (item) { return item.login === 'mojombo'; });
-                console.log(data);
-
                 var userIds = [];
 
-                //data.forEach(function (item, index, arr) {
-                //    var user = { "type": item.type };
-                //    userIds.push(user);
-                //});
+                console.log(json);
 
-                var mapUsers = data.map((function (item) {
-                    userIds.push(item.type, item.login);
+                var mapUsers = json.map((function (item) {
+                    userIds.push(item.name, item.username, item.email, item.location);
                 }));
 
                 var getUsername = document.getElementById('username');

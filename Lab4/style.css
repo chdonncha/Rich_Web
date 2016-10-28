@@ -85,13 +85,13 @@ h3 {
 }
 
 .profileElement div {
-    width: 100%;
+    /*width: 100%;
     height: 100%;
     padding-top: 5px;
-    padding-bottom: 5px;
+    padding-bottom: 5px;*/
 }
 .profileElement span {
-    padding-left: 10px;
+    /*padding-left: 10px;*/
 }
 .profileElement div:not(:last-child) {
     border-bottom: 1px solid grey;
@@ -99,6 +99,5 @@ h3 {
 
 img {
     padding: 1em;
-  
 }
 
