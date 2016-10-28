@@ -13,8 +13,8 @@
         <div class="row">
             <div class="col">
                 <div class="buttonHolder">
-                    <input id="inputname" type="text" placeholder="Username">
-                    <input onclick="getInput()" id="submitname" type="button" value="Submit">
+                    <input id="inputname" type="text" placeholder="Username" value="trdt">
+                    <input onclick="setUsername()" id="submitname" type="button" value="Submit">
                 </div>
             </div>
         </div>
@@ -24,7 +24,7 @@
                 <div><b>User Profile</b></div><br />
                 <div class="profileElement">
                     <div><img src="1.jpg" id="user_avatar" /></div>
-                    <div id="username"><span><b>Name </b></span></div>
+                    <div id="username" style="font-weight: bold; padding: 10px;">Name</div>
                     <div><span><b>Username </b></span></div>
                     <div><span><b>Email </b></span></div>
                     <div><span><b>Location </b></span></div>
@@ -33,7 +33,7 @@
             </div>
 
             <div class="col">
-               <div><b>User Repos</b></div><br />
+                <div><b>User Repos</b></div><br />
                 <div class="userRepo">
                     <label> Name</label><br />
                     <label> Description</label><br />
@@ -79,13 +79,20 @@
         };
 
         function getInput() {
-            var getInput = document.getElementById('inputname').value;
-            var searchUsername = document.getElementById('username').innerHTML = getInput;
+            var getUser = document.getElementById('inputname').value;
 
-            if (searchUsername == null || searchUsername == "") {
+            // Check if user has entered an input into the search
+            if (getUser == null || getUser == "") {
                 console.log("please enter a username");
             }
-            console.log("tested");
+  
+            return getUser;
+        }
+
+        function setUsername() {
+            var user = getInput();
+            var getUsername = document.getElementById('username');
+            getUsername.innerHTML = "Name: " + user;
         }
 
         function parseJSONArray() {
@@ -100,13 +107,15 @@
                     console.log("Could not parse JSON. Result: " + result);
                     return;
                 }
-                
+
                 var x = document.forms['']
 
                 var todos = json.filter(function (item) { return item.login === 'mojombo'; });
                 console.log(todos);
 
-                var getUsername = document.getElementById('username').innerHTML = 'hello';
+                setUsername();
+
+                console.log(user);
             });
         }
 
