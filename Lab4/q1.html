@@ -13,7 +13,7 @@
         <div class="row">
             <div class="col">
                 <div class="buttonHolder">
-                    <input id="inputname" type="text" placeholder="Username">
+                    <input id="inputname" type="text" placeholder="Username" value="chdonncha">
                     <input onclick="findData()" id="submitname" type="button" value="Submit">
                 </div>
             </div>
@@ -107,32 +107,49 @@
 
                 var userIds = [];
 
-                console.log(json);
+                //console.log(json);
 
-                var setAvatar = document.getElementById('user_avatar');
-                setAvatar.setAttribute("src", json.avatar_url);
+                setAvatar(json);
+                setName(json);
+                setUserName(json);
+                setEmail(json);
+                setLocation(json);
+                setGistNum(json);
 
-                var setName = document.getElementById('name');
-                setName.innerHTML = "Name: " + json.name;
-
-                var setUsername = document.getElementById('username');
-                setUsername.innerHTML = "Username: " + json.login;
-
-                var setEmail = document.getElementById('email');
-                setEmail.innerHTML = "Email: " + json.email;
-
-                var setLocation = document.getElementById('location');
-                setLocation.innerHTML = "Location: " + json.location;
-
-                var setGitNum = document.getElementById('gistnum');
-                setGitNum.innerHTML = "Gist Number: " + json.public_gists;
-
-                console.log(userIds);
             });
         }
 
-        function findData()
-        {
+        function setAvatar(json) {
+            var avatar = document.getElementById('user_avatar');
+            avatar.setAttribute("src", json.avatar_url);
+        }
+
+        function setName(json) {
+            var name = document.getElementById('name');
+            name.innerHTML = "Name: " + json.name;
+        }
+
+        function setUserName(json) {
+            var username = document.getElementById('username');
+            username.innerHTML = "Username: " + json.login;
+        }
+
+        function setEmail(json) {
+            var email = document.getElementById('email');
+            email.innerHTML = "Email: " + json.email;
+        }
+
+        function setLocation(json) {
+            var location = document.getElementById('location');
+            location.innerHTML = "Location: " + json.location;
+        }
+
+        function setGistNum(json) {
+            var gitnum = document.getElementById('gistnum');
+            gitnum.innerHTML = "Gist Number: " + json.public_gists;
+        }
+       
+        function findData() {
             parseUserArray();
             parseReposArray();
         }
@@ -141,7 +158,7 @@
             var input = getInput();
 
             var fetchURL = 'https://api.github.com/users/' + input + '/repos';
-            
+
             fetch(fetchURL).then(function (result) {
 
                 var json;
@@ -152,6 +169,10 @@
                     console.log("Could not parse JSON. Result: " + result);
                     return;
                 }
+                console.log(json);
+
+                var userIds = json.map(function (item) { return item.userId; });
+
             });
         }
 
