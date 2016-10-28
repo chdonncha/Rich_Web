@@ -98,6 +98,8 @@ h3 {
 }
 
 img {
+    width: 15em;
+    height: 15em;
     padding: 1em;
 }
 

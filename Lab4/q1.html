@@ -117,7 +117,7 @@
                 console.log(json);
                 
                 var setAvatar = document.getElementById('user_avatar');
-                setAvatar.innerHTML = json.avatar_url;
+                setAvatar.setAttribute ("src", json.avatar_url);
 
                 var setName = document.getElementById('name');
                 setName.innerHTML = "Name: " + json.name;
