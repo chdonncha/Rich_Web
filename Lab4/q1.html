@@ -13,8 +13,8 @@
         <div class="row">
             <div class="col">
                 <div class="buttonHolder">
-                    <input id="inputname" type="text" placeholder="Username" value="chdonncha">
-                    <input onclick="setUsername()" id="submitname" type="button" value="Submit">
+                    <input id="inputname" type="text" placeholder="Username">
+                    <input onclick="parseJSONArray()" id="submitname" type="button" value="Submit">
                 </div>
             </div>
         </div>
@@ -23,7 +23,7 @@
             <div class="col">
                 <div><b>User Profile</b></div><br />
                 <div class="profileElement">
-                    <div><img src="1.jpg" id="user_avatar" /></div>
+                    <div><img id="user_avatar" /></div>
                     <div id="name" style="font-weight: bold; padding: 10px;">Name</div>
                     <div id="username" style="font-weight: bold; padding: 10px;">Username</div>
                     <div id="email" style="font-weight: bold; padding: 10px;">Email</div>
@@ -85,21 +85,14 @@
             if (getUser == null || getUser == "") {
                 console.log("please enter a username");
             }
-
             return getUser;
-        }
-
-        function setUsername() {
-            var user = getInput();
-            var getUsername = document.getElementById('username');
-            getUsername.innerHTML = "Name: " + user;
         }
 
         function parseJSONArray() {
 
-            var user = getInput();
+            var input = getInput();
 
-            var fetchURL = 'https://api.github.com/users/' + user;
+            var fetchURL = 'https://api.github.com/users/' + input;
             console.log(fetchURL);
             fetch(fetchURL).then(function (result) {
 
@@ -115,9 +108,9 @@
                 var userIds = [];
 
                 console.log(json);
-                
+
                 var setAvatar = document.getElementById('user_avatar');
-                setAvatar.setAttribute ("src", json.avatar_url);
+                setAvatar.setAttribute("src", json.avatar_url);
 
                 var setName = document.getElementById('name');
                 setName.innerHTML = "Name: " + json.name;
@@ -135,6 +128,30 @@
                 setGitNum.innerHTML = "Gist Number: " + json.public_gists;
 
                 console.log(userIds);
+            });
+        }
+
+        function findData()
+        {
+            parseJSONArray
+            parseReposArray()
+        }
+
+        function parseReposArray() {
+            var input = getInput();
+
+            var fetchURL = 'https://api.github.com/users/' + input + 'repos';
+            console.log(fetchURL);
+            fetch(fetchURL).then(function (result) {
+
+                var json;
+                // Parse the json and do some error checking to ensure it is valid JSON.
+                try {
+                    json = JSON.parse(result);
+                } catch (e) {
+                    console.log("Could not parse JSON. Result: " + result);
+                    return;
+                }
             });
         }
 
