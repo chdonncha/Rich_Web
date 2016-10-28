@@ -14,7 +14,7 @@
             <div class="col">
                 <div class="buttonHolder">
                     <input id="inputname" type="text" placeholder="Username">
-                    <input onclick="parseJSONArray()" id="submitname" type="button" value="Submit">
+                    <input onclick="findData()" id="submitname" type="button" value="Submit">
                 </div>
             </div>
         </div>
@@ -88,7 +88,7 @@
             return getUser;
         }
 
-        function parseJSONArray() {
+        function parseUserArray() {
 
             var input = getInput();
 
@@ -133,15 +133,15 @@
 
         function findData()
         {
-            parseJSONArray
-            parseReposArray()
+            parseUserArray();
+            parseReposArray();
         }
 
         function parseReposArray() {
             var input = getInput();
 
-            var fetchURL = 'https://api.github.com/users/' + input + 'repos';
-            console.log(fetchURL);
+            var fetchURL = 'https://api.github.com/users/' + input + '/repos';
+            
             fetch(fetchURL).then(function (result) {
 
                 var json;
@@ -156,7 +156,7 @@
         }
 
         (function () {
-            parseJSONArray();
+            parseUserArray();
             //failedRequest();
         })();
 
