@@ -13,7 +13,7 @@
         <div class="row">
             <div class="col">
                 <div class="buttonHolder">
-                    <input id="inputname" type="text" placeholder="Username" value="trdt">
+                    <input id="inputname" type="text" placeholder="Username">
                     <input onclick="setUsername()" id="submitname" type="button" value="Submit">
                 </div>
             </div>
@@ -108,7 +108,8 @@
                     return;
                 }
 
-                var x = document.forms['']
+                //var userIds = [];
+                //json.forEach(function (item, index, arr) {
 
                 var todos = json.filter(function (item) { return item.login === 'mojombo'; });
                 console.log(todos);
