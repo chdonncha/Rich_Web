@@ -34,9 +34,7 @@
 
             <div class="col">
                 <div><b>User Repos</b></div><br />
-                <div id="userRepo">
-                    <label> Name</label><br />
-                    <label> Description</label><br />
+                <div class="repoElement" id="userRepo">
                 </div>
             </div>
         </div>
@@ -178,11 +176,13 @@
                 for (var i = 0; i < info.length; i++) {
 
                     var repo_row = document.createElement('div');
-                    repo_row.innerHTML += '<div>' + info[i] + '</div>';
+                    var name = info[i][0];
+                    var desc = info[i][1];
+                    desc = desc || "No description";
+                    repo_row.innerHTML += '<b>Name:</b> ' + name + '</br><br><b>Description:</b> ' + desc + '';
                     setRepos.appendChild(repo_row);
-                    //setRepos.innerHTML = info[i];
                 }
-                
+
 
             });
         }
