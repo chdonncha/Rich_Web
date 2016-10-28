@@ -115,13 +115,24 @@
                 var userIds = [];
 
                 console.log(json);
+                
+                var setAvatar = document.getElementById('user_avatar');
+                setAvatar.innerHTML = json.avatar_url;
 
-                var mapUsers = json.map((function (item) {
-                    userIds.push(item.name, item.username, item.email, item.location);
-                }));
+                var setName = document.getElementById('name');
+                setName.innerHTML = "Name: " + json.name;
 
-                var getUsername = document.getElementById('username');
-                getUsername.innerHTML = "Name: " + user;
+                var setUsername = document.getElementById('username');
+                setUsername.innerHTML = "Username: " + json.login;
+
+                var setEmail = document.getElementById('email');
+                setEmail.innerHTML = "Email: " + json.email;
+
+                var setLocation = document.getElementById('location');
+                setLocation.innerHTML = "Location: " + json.location;
+
+                var setGitNum = document.getElementById('gistnum');
+                setGitNum.innerHTML = "Gist Number: " + json.public_gists;
 
                 console.log(userIds);
             });
