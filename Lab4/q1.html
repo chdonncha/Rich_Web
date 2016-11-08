@@ -150,6 +150,15 @@
         function findData() {
             parseUserArray();
             parseReposArray();
+            removeRepoData();
+        }
+
+        function removeRepoData() {
+        // interate through all the child elements of userRepo and delete each child
+         var myNode = document.getElementById("userRepo");
+                while (myNode.firstChild) {
+                    myNode.removeChild(myNode.firstChild);
+                }
         }
 
         function parseReposArray() {
@@ -183,11 +192,6 @@
                     setRepos.appendChild(repo_row);
                 }
 
-                /*var revmoveRepos = document.getElementById('userRepo');
-                for (var i = 0; i < info.length; i++) {
-                    var repo_row = document.createElement('div');
-                    setRepos.removeChild(repo_row);
-                }*/
             });
         }
 
