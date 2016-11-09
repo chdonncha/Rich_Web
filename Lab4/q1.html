@@ -124,6 +124,7 @@
 
         function setName(json) {
             var name = document.getElementById('name');
+            json.name = json.name || "";
             name.innerHTML = "Name: " + json.name;
         }
 
@@ -134,16 +135,19 @@
 
         function setEmail(json) {
             var email = document.getElementById('email');
+            json.email = json.email || "";
             email.innerHTML = "Email: " + json.email;
         }
 
         function setLocation(json) {
             var location = document.getElementById('location');
+            json.location = json.location || "";
             location.innerHTML = "Location: " + json.location;
         }
 
         function setGistNum(json) {
             var gitnum = document.getElementById('gistnum');
+            json.public_gists = json.public_gists || "";
             gitnum.innerHTML = "Gist Number: " + json.public_gists;
         }
 
