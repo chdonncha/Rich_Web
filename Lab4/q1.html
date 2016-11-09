@@ -93,7 +93,7 @@
             var input = getInput();
 
             var fetchURL = 'https://api.github.com/users/' + input;
-            console.log(fetchURL);
+
             fetch(fetchURL).then(function (result) {
 
                 var json;
@@ -170,6 +170,7 @@
 
             var fetchURL = 'https://api.github.com/users/' + input + '/repos';
 
+            // Fetch the JSON associated with the inputted users' repos
             fetch(fetchURL).then(function (result) {
 
                 var json;
@@ -180,19 +181,21 @@
                     console.log("Could not parse JSON. Result: " + result);
                     return;
                 }
-                //console.log(json);
-
+                
+                // Build an array of the names and descriptions of repos
                 var info = json.map(function (item) { return [item.name, item.description]; });
-                //console.log(info);
 
                 var setRepos = document.getElementById('userRepo');
+
+                // Create multiple divs for each repo found, displaying the name of the repo and the
+                // description of the repo
                 for (var i = 0; i < info.length; i++) {
 
                     var repo_row = document.createElement('div');
                     var name = info[i][0];
                     var desc = info[i][1];
                     desc = desc || "No description";
-                    repo_row.innerHTML += '<b>Name:</b> ' + name + '</br><br><b>Description:</b> ' + desc + '';
+                    repo_row.innerHTML += '<b>Name:</b> ' + name + '</br><br><b>Description:</b> ' + desc;
                     setRepos.appendChild(repo_row);
                 }
 
