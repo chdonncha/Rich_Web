@@ -105,7 +105,7 @@
 
                 var userIds = [];
 
-                //console.log(json);
+                console.log(json);
 
                 setAvatar(json);
                 setName(json);
@@ -176,10 +176,10 @@
                     console.log("Could not parse JSON. Result: " + result);
                     return;
                 }
-                console.log(json);
+                //console.log(json);
 
                 var info = json.map(function (item) { return [item.name, item.description]; });
-                console.log(info);
+                //console.log(info);
 
                 var setRepos = document.getElementById('userRepo');
                 for (var i = 0; i < info.length; i++) {
