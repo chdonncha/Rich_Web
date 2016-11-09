@@ -1,46 +1,48 @@
 ﻿<!DOCTYPE html>
 
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+
 <head>
-    <meta charset="utf-8" />
-    <link rel="stylesheet" type="text/css" href="style.css">
-    <title></title>
+	<meta charset="utf-8" />
+	<link rel="stylesheet" type="text/css" href="style.css">
+	<title></title>
 </head>
+
 <body>
 
-    <style src="mystyle.css"></style>
-    <section>
-        <div class="row">
-            <div class="col">
-                <div class="buttonHolder">
-                    <input id="inputname" type="text" placeholder="Username">
-                    <input onclick="findData()" id="submitname" type="button" value="Submit">
-                </div>
-            </div>
-        </div>
+	<style src="mystyle.css"></style>
+	<section>
+		<div class="row">
+			<div class="col">
+				<div class="buttonHolder">
+					<input id="inputname" type="text" placeholder="Username">
+					<input onclick="findData()" id="submitname" type="button" value="Submit">
+				</div>
+			</div>
+		</div>
 
-        <div class="row">
-            <div class="col">
-                <div><b>User Profile</b></div><br />
-                <div class="profileElement">
-                    <div><img id="user_avatar" /></div>
-                    <div id="name" style="font-weight: bold; padding: 10px;">Name</div>
-                    <div id="username" style="font-weight: bold; padding: 10px;">Username</div>
-                    <div id="email" style="font-weight: bold; padding: 10px;">Email</div>
-                    <div id="location" style="font-weight: bold; padding: 10px;">Location</div>
-                    <div id="gistnum" style="font-weight: bold; padding: 10px;">Number of Gists</div>
-                </div>
-            </div>
+		<div class="row">
+			<div class="col">
+				<div><b>User Profile</b></div><br />
+				<div class="profileElement">
+					<div><img id="user_avatar" /></div>
+					<div id="name" style="font-weight: bold; padding: 10px;">Name</div>
+					<div id="username" style="font-weight: bold; padding: 10px;">Username</div>
+					<div id="email" style="font-weight: bold; padding: 10px;">Email</div>
+					<div id="location" style="font-weight: bold; padding: 10px;">Location</div>
+					<div id="gistnum" style="font-weight: bold; padding: 10px;">Number of Gists</div>
+				</div>
+			</div>
 
-            <div class="col">
-                <div><b>User Repos</b></div><br />
-                <div class="repoElement" id="userRepo">
-                </div>
-            </div>
-        </div>
-    </section>
+			<div class="col">
+				<div><b>User Repos</b></div><br />
+				<div class="repoElement" id="userRepo">
+				</div>
+			</div>
+		</div>
+	</section>
 
-    <script>
+	<script>
 
         function fetch(url, options) {
             // ensure options is not undefined. Set it to an empty array if it is.
@@ -114,6 +116,8 @@
                 setLocation(json);
                 setGistNum(json);
 
+            }).catch(function (error) {
+                alert("User not found");
             });
         }
 
@@ -194,13 +198,8 @@
 
             });
         }
-
-        (function () {
-            parseUserArray();
-            //failedRequest();
-        })();
-
     </script>
 
 </body>
+
 </html>
