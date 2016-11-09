@@ -204,7 +204,7 @@
                     // with each div. Then append each div to the userRepos section.
                     var name = info[i][0];
                     var desc = info[i][1];
-                    desc = desc || "No description";
+                    desc = desc || "";
                     repo_row.innerHTML += '<b>Name:</b> ' + name + '</br><br><b>Description:</b> ' + desc;
                     setRepos.appendChild(repo_row);
                 }
