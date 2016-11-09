@@ -80,11 +80,6 @@
 
         function getInput() {
             var getUser = document.getElementById('inputname').value;
-
-            // Check if user has entered an input into the search
-            if (getUser == null || getUser == "") {
-                console.log("please enter a username");
-            }
             return getUser;
         }
 
@@ -152,13 +147,20 @@
         }
 
         function findData() {
+            var user = getInput();
+            // Check if user has entered an input into the search
+            if (user == null || user == "") {
+                alert("Please enter a username");
+                return;
+            }
+
             parseUserArray();
             parseReposArray();
             removeRepoData();
         }
 
         function removeRepoData() {
-        // interate through all the child elements of userRepo and delete each child
+        // Interate through all the child elements of userRepo and delete each child.
          var myNode = document.getElementById("userRepo");
                 while (myNode.firstChild) {
                     myNode.removeChild(myNode.firstChild);
@@ -170,7 +172,7 @@
 
             var fetchURL = 'https://api.github.com/users/' + input + '/repos';
 
-            // Fetch the JSON associated with the inputted users' repos
+            // Fetch the JSON associated with the inputted users' repos.
             fetch(fetchURL).then(function (result) {
 
                 var json;
@@ -182,16 +184,19 @@
                     return;
                 }
                 
-                // Build an array of the names and descriptions of repos
+                // Build an array of the names and descriptions of repos.
                 var info = json.map(function (item) { return [item.name, item.description]; });
 
                 var setRepos = document.getElementById('userRepo');
 
                 // Create multiple divs for each repo found, displaying the name of the repo and the
-                // description of the repo
+                // description of the repo.
                 for (var i = 0; i < info.length; i++) {
 
                     var repo_row = document.createElement('div');
+
+                    // Retrieve each name and description from each repo, adding the nessesary html along
+                    // with each div. Then append each div to the userRepos section.
                     var name = info[i][0];
                     var desc = info[i][1];
                     desc = desc || "No description";
