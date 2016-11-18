@@ -1,7 +1,3 @@
-// local install of node
-
-npm install --save webpack
-
 // specify a input and out file for webpack
 
 webpack ./cal.js bundle.js
@@ -10,3 +6,6 @@ webpack ./cal.js bundle.js
 
 npm run compile
 
+// add to end of a command to get detailed error
+
+--display-error-details
