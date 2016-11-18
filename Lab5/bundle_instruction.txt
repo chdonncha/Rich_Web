@@ -23,11 +23,16 @@ npm init to create the package.json
 npm --help
 
 
+
 // install the webpack which contains nxjs as well
+
 
 Npm install --save webpack
 
+
+
 webpack --watch yourjsfile.js bundle.js
+
 
 "compile": "webpack --watch ./index.js bundle.js"
 to scripts
