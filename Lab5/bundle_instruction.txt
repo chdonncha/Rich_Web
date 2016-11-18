@@ -2,10 +2,33 @@
 
 webpack ./cal.js bundle.js
 
+
 // make the bundler auto compile
 
 npm run compile
 
+
 // add to end of a command to get detailed error
 
 --display-error-details
+
+
+// init the project
+
+npm init to create the package.json
+
+
+// find npm help
+
+npm --help
+
+
+// install the webpack which contains nxjs as well
+
+Npm install --save webpack
+
+webpack --watch yourjsfile.js bundle.js
+
+"compile": "webpack --watch ./index.js bundle.js"
+to scripts
+replace the index.js with what you called it
