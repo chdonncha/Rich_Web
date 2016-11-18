@@ -311,8 +311,7 @@
 
         function getStreetNames() {
             var addresses = [];
-            // Big O Notation
-            // O(N)
+           
             arrayStructure.forEach(function (item, index, arr) {
                 if (item.address.zipcode[0] === '5') {
                     addresses.push(item.address.street);
@@ -320,11 +319,9 @@
             });
             // Use a filter to filter out every item that does not match our condition.
             // Once we have a filtered collection we then map that collection to how we want to structure the array.
-            // Also it should be pointed out that this example is a trade off in peformance for readability.
             // Essentially we are looping over two collection where the previous foreach example only loops over the first collection.
             // The first collection in this case being the entire array and the second "probably" being a smaller array.
-            // Big O Notation
-            // O(N + K)
+          
             var mapAddresses = arrayStructure.filter(function (item) {
                 return item.address.zipcode[0] === '5';
             }).map(function (item) {

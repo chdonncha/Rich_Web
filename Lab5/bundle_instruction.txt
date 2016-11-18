@@ -1,3 +1,12 @@
+// local install of node
+
+npm install --save webpack
+
 // specify a input and out file for webpack
 
 webpack ./cal.js bundle.js
+
+// make the bundler auto compile
+
+npm run compile
+

@@ -120,6 +120,16 @@ function calculator() {
                 calculatorContainer.appendChild(flexContainer);
 
                 generateButtons(flexContainer);
+
+                // var keyActions = Rx.Observable
+                //     .merge(Rx.Observable.fromEvent(document, 'keydown'), keyUps)
+                //     .distinctUntilChanged(function(e) { return e.type + (e.key || e.which); });
+
+                // keyActions.subscribe(function(e) {
+                //     console.log(e.type, e.key || e.which, e.keyIdentifier);
+                // });
+                // System.out.println("test");
+
                 document.addEventListener('keypress', keyPressedEvent);
 
             };
