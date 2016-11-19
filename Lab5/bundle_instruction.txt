@@ -23,9 +23,7 @@ npm init to create the package.json
 npm --help
 
 
-
 // install the webpack which contains nxjs as well
-
 
 Npm install --save webpack
 
