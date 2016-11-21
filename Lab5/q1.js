@@ -1,4 +1,4 @@
-var Rxjs = require("rxjs/Rx");
+import {Observable} from 'rsjx/Rx';
 
 function calculator() {
 
