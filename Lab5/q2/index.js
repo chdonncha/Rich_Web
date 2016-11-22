@@ -74,9 +74,3 @@ function drawHand(ctx, pos, length, width) {
   ctx.stroke();
   ctx.rotate(-pos);
 }
-
-(function() {
-  drawFace(ctx, radius);
-  drawNumbers(ctx, radius);
-  drawTime(ctx, radius);
-})();
