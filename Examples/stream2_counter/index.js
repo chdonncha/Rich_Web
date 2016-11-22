@@ -1,4 +1,4 @@
-import {Observable} from 'rsjx/Rx';
+import {Observable} from 'rxjs/Rx';
 
 const display = document.getElementById('display');
 const incButton = document.getElementById('increment');
