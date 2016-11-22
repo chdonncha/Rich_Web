@@ -44,7 +44,8 @@
 /* 0 */
 /***/ function(module, exports) {
 
-	import {Observable} from 'rsjx/Rx';
+	console.log("this is a test");
+	import {Observable} from 'node_modules/rsjx/Rx';
 
 	const display = document.getElementById('display');
 	const incButton = document.getElementById('increment');
