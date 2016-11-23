@@ -8,9 +8,13 @@ canvas {
         left: 0;
         right: 0;
     }
+
+    .timerHolder {
+        margin-top: 45%;
+    }
     
     .buttonHolder {
-        margin-top: 55%;
+        margin-top: 5%;
         text-align: center;
     }
     

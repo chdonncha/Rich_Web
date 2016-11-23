@@ -1,21 +1,65 @@
 import {Observable} from 'rxjs/Rx';
 
+var Rx = require('rxjs/Rx');
+
 var canvas = document.getElementById('canvas');
 var ctx = canvas.getContext('2d');
 var radius = canvas.height / 2;
+var timerSubscription;
 ctx.translate(radius, radius);
 radius = radius * 0.90;
 setInterval(drawClock, 1000);
+
+(function() { registerButtonEvents(); })();
+
+function registerButtonEvents() {
+  var startButton = document.getElementById('start');
+  startButton.addEventListener(
+      'click', function() { addOperatorToDisplay('*'); });
+}
+
+function setupTimer() {
+  var pauser = new Rx.Subject();
+
+
+
+  timerSubscription = source.subscribe(
+      function(x) { console.log(x); },
+      function(err) {
+
+      },
+      function() {
+
+      });
+  var element = document.getElementById('display');
+  element.innerHTML = source;
+}
+
+function startTimer() {
+
+
+      var source = Observable.interval(500)
+                   .timeInterval()
+                   .map(function(x) { return x.value + ':' + x.interval; })
+                   .share();
+}
+
+function stopTimer(){
+    if(timerSubscription != null){
+        timerSubscription.unsubscribe();
+    }
+}
 
 function drawClock() {
   drawFace(ctx, radius);
   drawNumbers(ctx, radius);
   drawTime(ctx, radius);
+  updateTimer();
 }
 
 function drawFace(ctx, radius) {
   drawOuterFace(ctx, radius);
-  // draws over hands
+  // Draws over hands.
   InnerArc(ctx, radius)
 }
 
@@ -55,10 +99,10 @@ function drawNumbers(ctx, radius) {
     ctx.rotate(-ang);
     ctx.fillText(num.toString(), 0, 0);
 
-    ctx.beginPath();
-    ctx.moveTo(20,0);
-    ctx.lineTo(0,20);
-    ctx.stroke();
+    // ctx.beginPath();
+    // ctx.moveTo(20, 0);
+    // ctx.lineTo(0, 20);
+    // ctx.stroke();
 
     ctx.rotate(ang);
     ctx.translate(0, radius * 0.85);
