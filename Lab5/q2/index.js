@@ -17,11 +17,17 @@ function drawFace(ctx, radius) {
   var grad;
   ctx.beginPath();
   ctx.arc(0, 0, radius, 0, 2*Math.PI);
-  ctx.fillStyle = 'white';
+  ctx.fillStyle = 'red';
   ctx.fill();
-
-  ctx.lineWidth = radius*0.1;
+  grad = ctx.createRadialGradient(0,0,radius*0.9875, 0,0,radius*1.0125);
+  grad.addColorStop(0, '#333');
+  grad.addColorStop(0.2, '#fff');
+  grad.addColorStop(0.8, '#fff');
+  grad.addColorStop(1, '#333');
+  ctx.strokeStyle = grad;
+  ctx.lineWidth = radius*0.04;
   ctx.stroke();
+  
   ctx.beginPath();
   ctx.arc(0, 0, radius*0.1, 0, 2*Math.PI);
   ctx.fillStyle = '#333';
