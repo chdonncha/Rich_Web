@@ -1,0 +1,38 @@
+canvas {
+        padding: 0;
+        margin: auto;
+        display: block;
+        position: absolute;
+        top: 0;
+        bottom: 15em;
+        left: 0;
+        right: 0;
+    }
+    
+    .buttonHolder {
+        margin-top: 55%;
+        text-align: center;
+    }
+    
+    input[type="button"] {
+        margin-left: 2.5%;
+        margin-right: 2.5%;
+        border: none;
+        color: darkslategrey;
+        font-size: 80%;
+        font-weight: bold;
+        background-color: #E8E8EE;
+        width: 12%;
+        height: 35px;
+        margin-left: 0.10%;
+        margin-right: 0.10%;
+    }
+
+    #display {
+    margin-bottom: 20px;
+    padding: 5px;
+    width: 50px;
+    text-align: right;
+    border: 1px solid grey;
+    border-radius: 5px;
+}

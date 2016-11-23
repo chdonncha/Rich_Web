@@ -56,8 +56,8 @@ function drawNumbers(ctx, radius) {
     ctx.fillText(num.toString(), 0, 0);
 
     ctx.beginPath();
-    //ctx.moveTo(20,0);
-    ctx.lineTo(10,ang);
+    ctx.moveTo(20,0);
+    ctx.lineTo(0,20);
     ctx.stroke();
 
     ctx.rotate(ang);
