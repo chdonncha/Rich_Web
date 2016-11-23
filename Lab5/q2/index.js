@@ -10,51 +10,55 @@ ctx.translate(radius, radius);
 radius = radius * 0.90;
 setInterval(drawClock, 100);
 
-(function() { registerButtonEvents(); })();
+(function() { setupTimer(); })();
 
 function registerButtonEvents() {
-//   var startButton = document.getElementById('start');
-//   startButton.addEventListener(
-//       'click', function() { addOperatorToDisplay('*'); });
+  //   var startButton = document.getElementById('start');
+  //   startButton.addEventListener(
+  //       'click', function() { addOperatorToDisplay('*'); });
 }
 
 function setupTimer() {
-  var pauser = new Rx.Subject();
 
+  var source = Observable.interval(500)
+                   .timeInterval()
+                   .map(function(x) { return x.value + ':' + x.interval; })
+                   .share();
+
+  var pauser = new Rx.Subject();
+  var element = document.getElementById('display');
 
 
   timerSubscription = source.subscribe(
-      function(x) { console.log(x); },
+      function(x) { console.log(x); element.innerHTML = x;},
       function(err) {
 
       },
       function() {
 
       });
-  var element = document.getElementById('display');
-  element.innerHTML = source;
+
+  // 
 }
 
-function startTimer() {
+// function startTimer() {
+//   var source = Observable.interval(500)
+//                    .timeInterval()
+//                    .map(function(x) { return x.value + ':' + x.interval; })
+//                    .share();
+// }
 
-
-      var source = Observable.interval(500)
-                   .timeInterval()
-                   .map(function(x) { return x.value + ':' + x.interval; })
-                   .share();
-}
-
-function stopTimer(){
-    if(timerSubscription != null){
-        timerSubscription.unsubscribe();
-    }
+function stopTimer() {
+  if (timerSubscription != null) {
+    timerSubscription.unsubscribe();
+  }
 }
 
 function drawClock() {
   drawFace(ctx, radius);
   drawNumbers(ctx, radius);
   drawTime(ctx, radius);
-  //updateTimer();
+  // updateTimer();
 }
 
 function drawFace(ctx, radius) {
@@ -112,17 +116,17 @@ function drawNumbers(ctx, radius) {
 
 function drawTime(ctx, radius) {
   var now = new Date();
-  //var hour = now.getHours();
+  // var hour = now.getHours();
   var minute = now.getMinutes();
   var second = now.getSeconds();
   var tenthSecond = second;
 
 
   // hour
-//   hour = hour % 12;
-//   hour = (hour * Math.PI / 6) + (minute * Math.PI / (6 * 60)) +
-//       (second * Math.PI / (360 * 60));
-//   drawHand(ctx, hour, radius * 0.5, radius * 0.0125);
+  //   hour = hour % 12;
+  //   hour = (hour * Math.PI / 6) + (minute * Math.PI / (6 * 60)) +
+  //       (second * Math.PI / (360 * 60));
+  //   drawHand(ctx, hour, radius * 0.5, radius * 0.0125);
 
 
   // minute
