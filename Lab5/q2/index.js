@@ -8,14 +8,14 @@ var radius = canvas.height / 2;
 var timerSubscription;
 ctx.translate(radius, radius);
 radius = radius * 0.90;
-setInterval(drawClock, 1000);
+setInterval(drawClock, 100);
 
 (function() { registerButtonEvents(); })();
 
 function registerButtonEvents() {
-  var startButton = document.getElementById('start');
-  startButton.addEventListener(
-      'click', function() { addOperatorToDisplay('*'); });
+//   var startButton = document.getElementById('start');
+//   startButton.addEventListener(
+//       'click', function() { addOperatorToDisplay('*'); });
 }
 
 function setupTimer() {
@@ -54,7 +54,7 @@ function drawClock() {
   drawFace(ctx, radius);
   drawNumbers(ctx, radius);
   drawTime(ctx, radius);
-  updateTimer();
+  //updateTimer();
 }
 
 function drawFace(ctx, radius) {
@@ -112,15 +112,17 @@ function drawNumbers(ctx, radius) {
 
 function drawTime(ctx, radius) {
   var now = new Date();
-  var hour = now.getHours();
+  //var hour = now.getHours();
   var minute = now.getMinutes();
   var second = now.getSeconds();
+  var tenthSecond = second;
+
 
   // hour
-  hour = hour % 12;
-  hour = (hour * Math.PI / 6) + (minute * Math.PI / (6 * 60)) +
-      (second * Math.PI / (360 * 60));
-  drawHand(ctx, hour, radius * 0.5, radius * 0.0125);
+//   hour = hour % 12;
+//   hour = (hour * Math.PI / 6) + (minute * Math.PI / (6 * 60)) +
+//       (second * Math.PI / (360 * 60));
+//   drawHand(ctx, hour, radius * 0.5, radius * 0.0125);
 
 
   // minute
