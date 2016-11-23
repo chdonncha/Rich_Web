@@ -14,8 +14,9 @@ function drawClock() {
 }
 
 function drawFace(ctx, radius) {
-  InnerArc(ctx, radius)
   drawOuterFace(ctx, radius);
+  // draws over hands
+  InnerArc(ctx, radius)
 }
 
 function InnerArc(ctx, radius) {
@@ -53,6 +54,12 @@ function drawNumbers(ctx, radius) {
     ctx.translate(0, -radius * 0.85);
     ctx.rotate(-ang);
     ctx.fillText(num.toString(), 0, 0);
+
+    ctx.beginPath();
+    //ctx.moveTo(20,0);
+    ctx.lineTo(10,ang);
+    ctx.stroke();
+
     ctx.rotate(ang);
     ctx.translate(0, radius * 0.85);
     ctx.rotate(-ang);
@@ -64,11 +71,13 @@ function drawTime(ctx, radius) {
   var hour = now.getHours();
   var minute = now.getMinutes();
   var second = now.getSeconds();
+
   // hour
   hour = hour % 12;
   hour = (hour * Math.PI / 6) + (minute * Math.PI / (6 * 60)) +
       (second * Math.PI / (360 * 60));
   drawHand(ctx, hour, radius * 0.5, radius * 0.0125);
+
 
   // minute
   minute = (minute * Math.PI / 30) + (second * Math.PI / (30 * 60));
