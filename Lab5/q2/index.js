@@ -19,7 +19,6 @@ function registerButtonEvents() {
 }
 
 function setupTimer() {
-
   var source = Observable.interval(500)
                    .timeInterval()
                    .map(function(x) { return x.value + ':' + x.interval; })
@@ -30,7 +29,10 @@ function setupTimer() {
 
 
   timerSubscription = source.subscribe(
-      function(x) { console.log(x); element.innerHTML = x;},
+      function(x) {
+        console.log(x);
+        element.innerHTML = x;
+      },
       function(err) {
 
       },
@@ -38,7 +40,7 @@ function setupTimer() {
 
       });
 
-  // 
+  //
 }
 
 // function startTimer() {
@@ -56,8 +58,9 @@ function stopTimer() {
 
 function drawClock() {
   drawFace(ctx, radius);
-  drawNumbers(ctx, radius);
+  // drawNumbers(ctx, radius);
   drawTime(ctx, radius);
+  drawPathToNumbers(ctx, radius);
   // updateTimer();
 }
 
@@ -90,6 +93,28 @@ function drawOuterFace(ctx, radius) {
   ctx.stroke();
 }
 
+function drawPathToNumbers(ctx, radius) {
+  var num;
+  var ang;
+  var tickPlaces = 65;
+  for (num = 1; num < tickPlaces; num++) {
+    ang = num * Math.PI / 30;
+    ctx.beginPath();
+    ctx.rotate(ang);
+    if (num % 5 == 0) {
+      ctx.moveTo(0, -radius * 0.70);
+      ctx.lineWidth = 2;
+    } else {
+      ctx.moveTo(0, -radius * 0.80);
+      ctx.lineWidth = 1;
+    }
+    ctx.lineTo(0, -radius * 0.85);
+    ctx.stroke();
+
+    ctx.rotate(-ang);
+  }
+}
+
 function drawNumbers(ctx, radius) {
   var ang;
   var num;
@@ -102,11 +127,6 @@ function drawNumbers(ctx, radius) {
     ctx.translate(0, -radius * 0.85);
     ctx.rotate(-ang);
     ctx.fillText(num.toString(), 0, 0);
-
-    // ctx.beginPath();
-    // ctx.moveTo(20, 0);
-    // ctx.lineTo(0, 20);
-    // ctx.stroke();
 
     ctx.rotate(ang);
     ctx.translate(0, radius * 0.85);
