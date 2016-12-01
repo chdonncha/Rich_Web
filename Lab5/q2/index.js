@@ -3,65 +3,107 @@ import {Observable} from 'rxjs/Rx';
 var Rx = require('rxjs/Rx');
 
 var canvas = document.getElementById('canvas');
+var timeDisplay = document.getElementById('display');
+var timerSubscription;
+var timerSource;
+
 var ctx = canvas.getContext('2d');
 var radius = canvas.height / 2;
-var timerSubscription;
+var currentTime = 0;
 ctx.translate(radius, radius);
 radius = radius * 0.90;
 setInterval(drawClock, 100);
 
-(function() { setupTimer(); })();
+(function () {
+  createTimerSource();
+  updateCurrentTimeDisplay();
+  registerButtonEvents();
+})();
 
+// Register the button events when the page loads.
 function registerButtonEvents() {
-  //   var startButton = document.getElementById('start');
-  //   startButton.addEventListener(
-  //       'click', function() { addOperatorToDisplay('*'); });
+  var startButton = document.getElementById('start');
+  startButton.addEventListener(
+    'click', function () { startTimer(); });
+
+  var startButton = document.getElementById('stop');
+  startButton.addEventListener(
+    'click', function () { stopTimer(); });
+
+  var startButton = document.getElementById('reset');
+  startButton.addEventListener(
+    'click', function () { resetTimer(); });
+}
+// Create the Observable we will listen to for our time events.
+function createTimerSource() {
+  timerSource = Observable.interval(10)
+    .timeInterval()
+    .map(function (x) { return x.interval; })
+    .share();
 }
 
-function setupTimer() {
-  var source = Observable.interval(500)
-                   .timeInterval()
-                   .map(function(x) { return x.value + ':' + x.interval; })
-                   .share();
+// Register to the timer Observable so that we can consistently update the current timer.
+function startTimer() {
+  // Ensure timer is stopped
+  stopTimer();
 
-  var pauser = new Rx.Subject();
-  var element = document.getElementById('display');
+  timerSubscription = timerSource.subscribe(
+    function (x) {
+      currentTime += x;
+      updateCurrentTimeDisplay();
+    },
+    function (err) {
 
+    },
+    function () {
 
-  timerSubscription = source.subscribe(
-      function(x) {
-        console.log(x);
-        element.innerHTML = x;
-      },
-      function(err) {
-
-      },
-      function() {
-
-      });
-
-  //
+    });
 }
 
-// function startTimer() {
-//   var source = Observable.interval(500)
-//                    .timeInterval()
-//                    .map(function(x) { return x.value + ':' + x.interval; })
-//                    .share();
-// }
-
+// Stops the timer but does not reset the timer. Once start is clicked again the timer will
+// continue from the last value it left off at.
 function stopTimer() {
   if (timerSubscription != null) {
     timerSubscription.unsubscribe();
   }
+  updateCurrentTimeDisplay();
 }
+// Resets the timer and ensure the display is updated since the timer may be reset while
+// a countdown is not running and since the display is only updated on a "need to know" basis
+// it may not always be updated.
+function resetTimer() {
+  currentTime = 0;
+  updateCurrentTimeDisplay();
+}
+// Used to update the html display element with the current time.
+function updateCurrentTimeDisplay() {  
+  var seconds = Math.floor((currentTime / 1000) % 60);  
+  var minutes = Math.floor((currentTime / (1000 * 60)) % 60);
+  var tenths = Math.floor((currentTime / 100) % 10);
 
+  timeDisplay.innerHTML = minutes+":"+seconds+":"+tenths;
+}
+// Draws the entire clock as a whole.
 function drawClock() {
   drawFace(ctx, radius);
-  // drawNumbers(ctx, radius);
-  drawTime(ctx, radius);
   drawPathToNumbers(ctx, radius);
-  // updateTimer();
+  drawStopWatch(ctx, radius);
+}
+
+// Draws the hands on the timer and calculates rotation.
+function drawStopWatch(ctx, radius) {
+
+  var seconds = currentTime / 1000;
+  var minutes = currentTime / 60000;
+  var secondsAngle = seconds * Math.PI / 30;
+  var minutesAngle = minutes * Math.PI / 30;
+
+  ctx.beginPath();
+  ctx.lineWidth = 1;
+  ctx.strokeStyle = "#555555";
+
+  drawHand(ctx, secondsAngle, radius * 0.8, radius * 0.0125);
+  drawHand(ctx, minutesAngle, radius * 0.7, radius * 0.0125);
 }
 
 function drawFace(ctx, radius) {
@@ -77,6 +119,7 @@ function InnerArc(ctx, radius) {
   ctx.fill();
 }
 
+// Draws the outer face that surrounds the clock inside of it.
 function drawOuterFace(ctx, radius) {
   var grad;
   ctx.beginPath();
@@ -93,6 +136,7 @@ function drawOuterFace(ctx, radius) {
   ctx.stroke();
 }
 
+// Dras the lines on the clock which represent the numbers of the timer.
 function drawPathToNumbers(ctx, radius) {
   var num;
   var ang;
@@ -115,49 +159,7 @@ function drawPathToNumbers(ctx, radius) {
   }
 }
 
-function drawNumbers(ctx, radius) {
-  var ang;
-  var num;
-  ctx.font = radius * 0.15 + 'px arial';
-  ctx.textBaseline = 'middle';
-  ctx.textAlign = 'center';
-  for (num = 1; num < 13; num++) {
-    ang = num * Math.PI / 6;
-    ctx.rotate(ang);
-    ctx.translate(0, -radius * 0.85);
-    ctx.rotate(-ang);
-    ctx.fillText(num.toString(), 0, 0);
-
-    ctx.rotate(ang);
-    ctx.translate(0, radius * 0.85);
-    ctx.rotate(-ang);
-  }
-}
-
-function drawTime(ctx, radius) {
-  var now = new Date();
-  // var hour = now.getHours();
-  var minute = now.getMinutes();
-  var second = now.getSeconds();
-  var tenthSecond = second;
-
-
-  // hour
-  //   hour = hour % 12;
-  //   hour = (hour * Math.PI / 6) + (minute * Math.PI / (6 * 60)) +
-  //       (second * Math.PI / (360 * 60));
-  //   drawHand(ctx, hour, radius * 0.5, radius * 0.0125);
-
-
-  // minute
-  minute = (minute * Math.PI / 30) + (second * Math.PI / (30 * 60));
-  drawHand(ctx, minute, radius * 0.8, radius * 0.02);
-
-  // second
-  second = (second * Math.PI / 30);
-  drawHand(ctx, second, radius * 0.9, radius * 0.0125);
-}
-
+// Draw a hand through passing in the desired parameters.
 function drawHand(ctx, pos, length, width) {
   ctx.beginPath();
   ctx.lineWidth = width;

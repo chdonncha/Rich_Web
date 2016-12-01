@@ -1,5 +1,0 @@
-to run this:
-
-npm install -- installs the node-modules, normally removed due to the high space it takes
-
-npm start -- start hosting the app on the local server http://localhost:8080
